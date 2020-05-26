@@ -1,0 +1,26 @@
+{
+  "name": "DnD-client",
+  "version": "1.0.0",
+  "description": "Client facing application for DnD character creator tool",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Dungeons-Developers/DnD-client.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Dungeons-Developers/DnD-client/issues"
+  },
+  "homepage": "https://github.com/Dungeons-Developers/DnD-client#readme",
+  "dependencies": {
+    "bcrypt": "^4.0.1",
+    "chalk": "^4.0.0",
+    "jest": "^26.0.1",
+    "superagent": "^5.2.2"
+  }
+}
