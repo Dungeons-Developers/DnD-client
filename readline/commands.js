@@ -33,7 +33,7 @@ const commands = {
       rl.loginPassMute = true;
       
       rl.question('Password: ', async (input) => {
-        password = await bcrypt.hash(input, 10);
+        password = input;
         let response = await superagent.post('https://cf-dnd-character-creator.herokuapp.com/v1/api/user').send({ username, password });
 
         let user = response.body;
