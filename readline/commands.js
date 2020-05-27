@@ -20,6 +20,87 @@ const rl = require('./readline');
 // menu is a modular function that displays application options to the user
 const menu = require('./menu');
 
+
+async function login(passMute = '1') {
+  let username;
+  let password;
+
+  console.log(chalk.hex('#4298eb')('\nPlease log in.\n'));
+  rl.question('Username: ', async (input) => {
+    username = input;
+    
+    // setting boolean for when to hide password input
+    rl[passMute] = true;
+
+    rl.question('Password: ', async (input) => {
+      password = input;
+
+      rl[passMute] = false;
+      try {
+        let response = await superagent.post('https://cf-dnd-character-creator.herokuapp.com/v1/api/user').send({ username, password });
+  
+        let user = response.body;
+    
+        if (!user.username) {
+          console.log(chalk.hex('#f0190a')('\nInvalid credentials.'));
+          login(passMute + '1');
+        } else {
+          console.log(`\n\nWelcome, ${username}!\n`);
+          menu();
+        }
+
+      } catch(e) {
+        console.log('ERROR', e);
+      }
+    });
+    
+    // modifying rl write function to be able to hide password
+    rl._writeToOutput = function _writeToOutput(stringToWrite) {
+      if (rl[passMute]) rl.output.write('*');
+      else rl.output.write(stringToWrite);
+    };
+  });
+
+}
+
+async function signup(passMute = '1') {
+  let username;
+  let password;
+
+  console.log(chalk.hex('#4298eb')('\nPlease sign up.\n'));
+  rl.question('Username: ', (input) => {
+    username = input;
+
+    rl[passMute] = true;
+
+    rl.question('Password: ', async (input) => {
+      password = await bcrypt.hash(input, 10);
+      
+      // prompt to confirm password
+      let response = await superagent.post('https://cf-dnd-character-creator.herokuapp.com/v1/api/signup').send({username, password});
+      
+      let user = response.body;
+      
+      rl[passMute] = false;
+
+      if (!user.username) {
+        console.log('That username already exists. Please try again.');
+        // LOOP BACK
+        signup(passMute + '1');
+      } else {
+        console.log(`\nWelcome, ${username}!\n`);
+        menu();
+      }
+
+    });
+
+    rl._writeToOutput = function _writeToOutput(stringToWrite) {
+      if (rl[passMute]) rl.output.write('*');
+      else rl.output.write(stringToWrite);
+    };
+  });
+}
+
 const commands = {
   login: async () => {
     let username;
@@ -73,7 +154,7 @@ const commands = {
         password = await bcrypt.hash(input, 10);
         
         // prompt to confirm password
-        let response = await superagent.post('https://cf-dnd-character-creator.herokuapp.com/v1/api/createuser').send({username, password});
+        let response = await superagent.post('https://cf-dnd-character-creator.herokuapp.com/v1/api/signup').send({username, password});
         
         let user = response.body;
         
@@ -82,6 +163,7 @@ const commands = {
         if (!user.username) {
           console.log('That username already exists. Please try again.');
           // LOOP BACK
+          this.signup();
         } else {
           console.log(`\nWelcome, ${username}!\n`);
           menu();
@@ -129,37 +211,5 @@ const commands = {
   },
 };
 
-async function loginLoop() {
-  let username;
-  let password;
-  let passed = false;
-}
 
-          // while (!match) {
-          //   rl.question('Username: ', async (input) => {
-          //     username = input;
-
-          //     let response = await UserModel.readByQuery({ username });
-          //     console.log('response', response);
-
-          //     let user;
-          //     if (response[0]){
-          //       user = response[0];
-          //     }
-
-          //     rl.loginPassMute = true;
-
-          //     rl.question('Password: ', async (input) => {
-          //       password = input;
-
-          //       if (!user) {
-          //         console.log(chalk.hex('#f0190a')('\nInvalid credentials.'));
-          //       } else {
-          //         match = await bcrypt.compare(password, user.password);
-          //       }
-          //     });
-          //   });
-          // }
-
-
-module.exports = commands;
+module.exports = { login, signup };
