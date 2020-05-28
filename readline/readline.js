@@ -27,6 +27,16 @@ rl.on('line', (command) => {
   }
 });
 
+// Adding boolean for hiding passwords
+rl.secret = false;
+
+// modifying rl write function to be able to hide password
+rl._writeToOutput = function _writeToOutput(stringToWrite) {
+  if (rl.secret) rl.output.write('*');
+  else rl.output.write(stringToWrite);
+};
+
+// promise/async questions function
 rl.ask = (prompt, secret) => {
   return new Promise((resolve, reject) => {
     rl.secret = secret;
@@ -35,12 +45,6 @@ rl.ask = (prompt, secret) => {
       resolve(answer);
     });
   });
-};
-
-// modifying rl write function to be able to hide password
-rl._writeToOutput = function _writeToOutput(stringToWrite) {
-  if (rl.secret) rl.output.write('*');
-  else rl.output.write(stringToWrite);
 };
 
 // adds closure of current running thread
