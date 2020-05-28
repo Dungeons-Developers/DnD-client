@@ -20,6 +20,10 @@ const rl = require('./readline');
 // menu is a modular function that displays application options to the user
 const menu = require('./menu');
 
+// function login
+// prompts the user for login information: username, password.
+// "mutes" the password by modifying the _writeToOutput method
+// param - string - arbitrary string to interate upon 
 
 async function login(passMute = '1') {
   let username;
@@ -36,6 +40,7 @@ async function login(passMute = '1') {
       password = input;
 
       rl[passMute] = false;
+      
       try {
         let response = await superagent.post('https://cf-dnd-character-creator.herokuapp.com/v1/api/user').send({ username, password });
   
@@ -61,7 +66,12 @@ async function login(passMute = '1') {
     };
   });
 
+  rl.question('Password: ')
 }
+
+// function signup
+// prompts the user for username/password to create a new account
+// param - string - arbitrary string to interate upon 
 
 async function signup(passMute = '1') {
   let username;
@@ -101,6 +111,7 @@ async function signup(passMute = '1') {
   });
 }
 
+// not being used, dead code
 const commands = {
   login: async () => {
     let username;
