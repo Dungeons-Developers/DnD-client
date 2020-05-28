@@ -26,6 +26,7 @@ const menu = require('./menu');
 // param - string - arbitrary string to interate upon 
 
 async function login(passMute = '1') {
+  let user;
   let username;
   let password;
 
@@ -44,14 +45,14 @@ async function login(passMute = '1') {
       try {
         let response = await superagent.post('https://cf-dnd-character-creator.herokuapp.com/v1/api/user').send({ username, password });
   
-        let user = response.body;
+        user = response.body;
     
         if (!user.username) {
           console.log(chalk.hex('#f0190a')('\nInvalid credentials.'));
           login(passMute + '1');
         } else {
           console.log(`\n\nWelcome, ${username}!\n`);
-          menu();
+          menu(user);
         }
 
       } catch(e) {
@@ -66,7 +67,6 @@ async function login(passMute = '1') {
     };
   });
 
-  rl.question('Password: ')
 }
 
 // function signup
@@ -99,7 +99,7 @@ async function signup(passMute = '1') {
         signup(passMute + '1');
       } else {
         console.log(`\nWelcome, ${username}!\n`);
-        menu();
+        menu(user);
       }
 
     });
@@ -110,117 +110,6 @@ async function signup(passMute = '1') {
     };
   });
 }
-
-// not being used, dead code
-const commands = {
-  login: async () => {
-    let username;
-    let password;
-
-    console.log(chalk.hex('#4298eb')('\nPlease log in.\n'));
-    rl.question('Username: ', async (input) => {
-      username = input;
-      
-      // setting boolean for when to hide password input
-      rl.loginPassMute = true;
-      
-      rl.question('Password: ', async (input) => {
-        password = input;
-        let response = await superagent.post('https://cf-dnd-character-creator.herokuapp.com/v1/api/user').send({ username, password });
-
-        let user = response.body;
-
-        rl.loginPassMute = false;
-
-        if (!user.username) {
-          console.log(chalk.hex('#f0190a')('\nInvalid credentials.'));
-          // while(!user.username) {
-
-          // }
-        } else {
-          console.log(`\n\nWelcome, ${username}!\n`);
-          menu();
-        }
-      });
-      
-      // modifying rl write function to be able to hide password
-      rl._writeToOutput = function _writeToOutput(stringToWrite) {
-        if (rl.loginPassMute) rl.output.write('*');
-        else rl.output.write(stringToWrite);
-      };
-    });
-  },
-
-  signup: async () => {
-    let username;
-    let password;
-
-    console.log(chalk.hex('#4298eb')('\nPlease sign up.\n'));
-    rl.question('Username: ', (input) => {
-      username = input;
-
-      rl.signupPassMute = true;
-
-      rl.question('Password: ', async (input) => {
-        password = await bcrypt.hash(input, 10);
-        
-        // prompt to confirm password
-        let response = await superagent.post('https://cf-dnd-character-creator.herokuapp.com/v1/api/signup').send({username, password});
-        
-        let user = response.body;
-        
-        rl.signupPassMute = false;
-
-        if (!user.username) {
-          console.log('That username already exists. Please try again.');
-          // LOOP BACK
-          this.signup();
-        } else {
-          console.log(`\nWelcome, ${username}!\n`);
-          menu();
-        }
-
-      });
-
-      rl._writeToOutput = function _writeToOutput(stringToWrite) {
-        if (rl.signupPassMute) rl.output.write('*');
-        else rl.output.write(stringToWrite);
-      };
-    });
-  },
-
-  createCharacter: () => {
-    console.log(
-      chalk.green(
-        'Please fill out the following information about your character:',
-      ),
-    );
-    let charName;
-    let charRace;
-    let charClass;
-
-    rl.question(chalk.blue('\nWhat is your characters name? '), (name) => {
-      charName = name;
-
-      rl.question(chalk.blue('\nWhat is your characters race? '), (race) => {
-        charRace = race;
-
-        rl.question(
-          chalk.blue('\nWhat is your characters class? '),
-          (characterClass) => {
-            charClass = characterClass;
-
-            console.log(
-              chalk.green(
-                `\nYou have created a ${charRace} ${charClass} named ${charName}!`,
-              ),
-            );
-          },
-        );
-      });
-    });
-  },
-};
 
 
 module.exports = { login, signup };
