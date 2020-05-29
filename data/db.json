@@ -1,66 +1,27 @@
 {
-  "classes": [
+  "pre_made_Characters": [
     {
-      "barbarian": [
-        {
-          "name": "Barbarian",
-          "proficient_skills": [
-            {
+      "barbarian": {
+          "name": "Konan",
+          "class": "Barbarian",
+          "race": "Half-Orc",
+          "alignment": "Chaotic Good",
+          "deity": "Talos",
+          "proficient_skills": {
               "skill_1": "Intimidation",
               "skill_2": "Perception"
-            }
-          ],
+            },
           "equipment": [
             {
               "armor": "Leather",
-              "explorers_pack": [
-                {
-                  "money": "10 gp",
-                  "contents": [
-                    {
-                      "gear_1": "Backpack",
-                      "gear_2": "Bedroll",
-                      "gear_3": "Mess Kit",
-                      "gear_4": "Tinder Box",
-                      "gear_5": "Torch",
-                      "gear_6": "rations",
-                      "gear_7": "Waterskin",
-                      "gear_8": "Disguise Kit"
-                    }
-                  ]
+              "adventure_packs": "Adventuring Gear",
+              "weapons": {
+                  "choice_1": "javelin",
+                  "choice_2": "Great Axe"
                 }
-              ],
-              "weapon_1": [
-                {
-                  "name": "javelin",
-                  "quantity": 4,
-                  "damage": [
-                    {
-                      "range": "Throwing",
-                      "damage_dice": "1d6",
-                      "damage_type": "Piercing"
-                    }
-                  ]
-                }
-              ],
-              "weapon_2": [
-                {
-                  "name": "Great Axe",
-                  "quantity": 1,
-                  "damage": [
-                    {
-                      "range": "Melee",
-                      "damage_dice": "1d12",
-                      "damage_type": "Slashing"
-                    }
-                  ]
-                }
-              ]
             }
           ],
-          "armor_class": "AC 16",
-          "ability_scores": [
-            {
+          "ability_scores": {
               "str": 13,
               "dex": 14,
               "con": 15,
@@ -68,70 +29,30 @@
               "wis": 14,
               "cha": 15
             }
-          ]
         }
-      ],
-      "bard": [
-        {
-          "name": "Bard",
-          "proficient_skills": [
-            {
+    },
+    {
+      "bard": {
+          "name": "Dan The Man",
+          "class": "Bard",
+          "race": "Human",
+          "alignment": "Lawful Evil",
+          "deity": "Milil",
+          "skills": {
               "skill_1": "Animal Handling",
-              "skill_2": "Stealth",
               "skill_3": "Deception"
-            }
-          ],
+            },
           "equipment": [
             {
-              "explorers_pack": [
-                {
-                  "money": "40 gp",
-                  "contents": [
-                    {
-                      "gear_1": "Backpack",
-                      "gear_2": "Bedroll",
-                      "gear_3": "Clothes Costume",
-                      "gear_4": "Candle",
-                      "gear_5": "Torch",
-                      "gear_6": "rations",
-                      "gear_7": "Waterskin",
-                      "gear_8": "Disguise Kit"
-                    }
-                  ]
+              "armor": "Padded Leather",
+              "adventure_packs": "Dungeoners Kit",
+              "weapons": {
+                  "choice_1": "Javelin",
+                  "choice_2": "Dagger"
                 }
-              ],
-              "weapon_1": [
-                {
-                  "name": "Javelin",
-                  "quantity": 4,
-                  "damage": [
-                    {
-                      "range": "",
-                      "damage_dice": "1d6",
-                      "damage_type": "Piercing"
-                    }
-                  ]
-                }
-              ],
-              "weapon_2": [
-                {
-                  "name": "Dagger",
-                  "quantity": 1,
-                  "damage": [
-                    {
-                      "range": "Melee",
-                      "damage_dice": "1d4",
-                      "damage_type": "Piercing"
-                    }
-                  ]
-    
-                }
-              ]
             }
           ],
-          "armor_class": "AC 13",
-          "ability_scores": [
-            {
+          "ability_scores": {
               "str": 13,
               "dex": 14,
               "con": 15,
@@ -139,68 +60,30 @@
               "wis": 14,
               "cha": 15
             }
-          ]
         }
-      ],
-      "cleric": [
-        {
-          "name": "Cleric",
-          "proficient_skills": [
-            {
+    },
+    {
+      "cleric": {
+          "name": "Jendar Kriliak",
+          "class": "Cleric",
+          "race": "Dark Elf",
+          "alignment": "Chaotic Evil",
+          "deity": "Mystra, God of Magic",
+          "proficient_skills": {
               "skill_1": "Medicine",
-              "skill_2": "Religion"
-            }
-          ],
+              "skill_2": "Deception"
+            },
           "equipment": [
-            {
-              "explorers_pack": [
-                {
-                  "money": "40 gp",
-                  "contents": [
-                    {
-                      "gear_1": "Backpack",
-                      "gear_2": "Bedroll",
-                      "gear_3": "Clothes Costume",
-                      "gear_4": "Candle",
-                      "gear_5": "Torch",
-                      "gear_6": "rations",
-                      "gear_7": "Waterskin",
-                      "gear_8": "Disguise Kit"
-                    }
-                  ]
+            { 
+              "armor": "Leather",
+              "adventure_packs": "Adventure Gear",
+              "weapons": {
+                  "choice_1": "Javelin",
+                  "choice_2": "Dagger"
                 }
-              ],
-              "weapon_1": [
-                {
-                  "name": "Javelin",
-                  "quantity": 4,
-                  "damage": [
-                    {
-                      "range": "",
-                      "damage_dice": "1d6",
-                      "damage_type": "Piercing"
-                    }
-                  ]
-                }
-              ],
-              "weapon_2": [
-                {
-                  "name": "Dagger",
-                  "quantity": 1,
-                  "damage": [
-                    {
-                      "range": "Melee",
-                      "damage_dice": "1d4",
-                      "damage_type": "Piercing"
-                    }
-                  ]
-                }
-              ]
             }
           ],
-          "armor_class": "AC 13",
-          "ability_scores": [
-            {
+          "ability_scores": {
               "str": 13,
               "dex": 14,
               "con": 15,
@@ -208,12 +91,219 @@
               "wis": 14,
               "cha": 15
             }
-          ]
         }
-      ]
+    },
+    {
+      "fighter": {
+          "name": "Dirrbick",
+          "class": "Fighter",
+          "race": "Dwarven",
+          "alignment": "Lawful Good",
+          "deity": "Talos, God of Storms",
+          "proficient_skills": {
+              "skill_1": "Intimidate",
+              "skill_2": "Search"
+            },
+          "equipment": [
+            {
+              "armor": "Chain Mail",
+              "adventure_packs": "Dungeoners Kit",
+              "weapons": {
+                  "choice_1": "Great Axe",
+                  "choice_2": "War Hammer"
+                }
+            }
+          ],
+          "ability_scores": {
+              "str": 16,
+              "dex": 14,
+              "con": 15,
+              "int": 11,
+              "wis": 13,
+              "cha": 14
+            }
+
+        }
+    }
+  ],
+  "races": [
+    {
+      "dragonborn": "Dragonborn",
+      "dwarf": "Dwarf",
+      "elf": "Elf",
+      "gnome": "Gnome",
+      "half_elf": "Half-Elf",
+      "half_orc": "Half-Orc",
+      "halfling": "Halfling",
+      "human": "Human",
+      "tiefling": "Tiefling"
+    }
+  ],
+  "classes": [
+    {
+      "class_1": "Barbarian",
+      "class_2": "Bard",
+      "class_3": "Cleric",
+      "class_4": "Druid",
+      "class_5": "Fighter",
+      "class_6": "Monk",
+      "class_7": "Paladin",
+      "class_8": "Ranger",
+      "class_9": "Rogue",
+      "class_10": "Sorcerer",
+      "class_11": "Warlock",
+      "class_12": "Wizard"
+    }
+  ],
+  "weapons": [
+    {
+      "weapon_1": "Club",
+      "weapon_2": "Dagger",
+      "weapon_3": "Greatclub",
+      "weapon_4": "Handaxe",
+      "weapon_5": "Javelin",
+      "weapon_6": "Light Hammer",
+      "weapon_7": "Mace",
+      "weapon_8": "Quarterstaff",
+      "weapon_9": "Sickle",
+      "weapon_10": "Spear",
+      "weapon_11": "Crossbow, Light",
+      "weapon_12": "Dart",
+      "weapon_13": "Shortbow",
+      "weapon_14": "Sling",
+      "weapon_15": "Battleaxe",
+      "weapon_16": "Flail",
+      "weapon_17": "Glaive",
+      "weapon_18": "Greataxe",
+      "weapon_19": "Greatsword",
+      "weapon_20": "Halberd",
+      "weapon_21": "Lance",
+      "weapon_22": "Longsword",
+      "weapon_23": "Maul",
+      "weapon_24": "Morningstar",
+      "weapon_25": "Pike",
+      "weapon_26": "Rapier",
+      "weapon_27": "Scimitar",
+      "weapon_28": "Shortsword",
+      "weapon_29": "Trident",
+      "weapon_30": "War Pick",
+      "weapon_31": "Warhammer",
+      "weapon_32": "Whip",
+      "weapon_33": "Blowgun",
+      "weapon_34": "Crossbow, hand",
+      "weapon_35": "Crossbow, Heavy",
+      "weapon_36": "Longbow",
+      "weapon_37": "Net?"
+    }
+  ],
+  "alignment": [
+    {
+      "alignment_1": "Lawful Good",
+      "alignment_2": "Neutral Good",
+      "alignment_3": "Chaotic Good",
+      "alignment_4": "Lawful Neutral",
+      "alignment_5": "Neutral",
+      "alignment_6": "Chaotic Neutral",
+      "alignment_7": "Lawful Evil",
+      "alignment_8": "Neutral Evil",
+      "alignment_9": "Chaotic Evil"
+    }
+  ],
+  "deity": [
+    {
+      "deity_1": "Auril, Goddes of Winter",
+      "deity_2": "Azuth, God of Wizards",
+      "deity_3": "Bane, God of Tyranny",
+      "deity_4": "Beshaba, Goddes of Misfortune",
+      "deity_5": "Bhaal, God of Murder",
+      "deity_6": "Chauntea, Goddess of Agriculture",
+      "deity_7": "Cyric, God of Lies",
+      "deity_8": "Deneir, God of Writing",
+      "deity_9": "Eldath, Goddes of Peace",
+      "deity_10": "Gond, God of Craft",
+      "deity_11": "Helm, God of Protection",
+      "deity_12": "Ilmater, God of Endurance",
+      "deity_13": "Kelemvor, God of the Dead",
+      "deity_14": "Lathander, God of Birth and Renewal",
+      "deity_15": "Leira, Goddess of Illusion",
+      "deity_16": "Lliira, Goddess of Joy",
+      "deity_17": "Loviatar, Goddess of Pain",
+      "deity_18": "Malar, God of the Hunt",
+      "deity_19": "Mask, God of Thieves",
+      "deity_20": "Mielikki, Goddess of Forests",
+      "deity_21": "Milil, God of Poetry and Song",
+      "deity_22": "Myrkul, God of Death",
+      "deity_23": "Mystra, Goddess of Magic",
+      "deity_24": "Oghma, God of Knowledge",
+      "deity_25": "Savras, God of Divination and Fate",
+      "deity_26": "Selune, Goddess of the Moon",
+      "deity_27": "Shar, Goddess of Darkness and Loss",
+      "deity_28": "Silvanus, God of Wild Nature",
+      "deity_29": "Sune, Goddess of Love and Beauty",
+      "deity_30": "Talona, Goddess of Disease and Poison",
+      "deity_31": "Talos, God of Storms",
+      "deity_32": "Tempus, God of War",
+      "deity_33": "Torm, God of Courage and Self-Sacrifice",
+      "deity_34": "Tymora, Goddess of Good Fortune",
+      "deity_35": "Tyr, God of Justice",
+      "deity_36": "Umberlee, Goddess of the Sea",
+      "deity_37": "Waukeen, Goddess of Trade"
+    }
+  ],
+  "skills": [
+    {
+      "skill_1": "Acrobatics",
+      "skill_2": "Animal Handling",
+      "skill_3": "Arcana",
+      "skill_4": "Athletics",
+      "skill_5": "Deception",
+      "skill_6": "History",
+      "skill_7": "Insight",
+      "skill_8": "Intimidation",
+      "skill_9": "Investigation",
+      "skill_10": "Medicine",
+      "skill_11": "Nature",
+      "skill_12": "Perception",
+      "skill_13": "Performance",
+      "skill_14": "Persuasion",
+      "skill_15": "Religion",
+      "skill_16": "Sleight of Hand",
+      "skill_17": "Stealth",
+      "skill_18": "Survival"
+    }
+  ],
+  "adventuring_packs": [
+    {
+      "pack_1": "Burglars Pack",
+      "pack_2": "Diplomats Pack",
+      "pack_3": "Dungeoneers Pack",
+      "pack_4": "Entertainers Pack",
+      "pack_5": "Explorers Pack",
+      "pack_6": "Priests Pack",
+      "pack_7": "Scholar's Pack"
+    }
+  ],
+  "armor": [
+    {
+      "armor_1": "Padded",
+      "armor_2": "Leather",
+      "armor_3": "Studded Leather",
+      "armor_4": "Hide",
+      "armor_5": "Chain Shirt",
+      "armor_6": "Scale Mail",
+      "armor_7": "Breatplate",
+      "armor_8": "Half Plate",
+      "armor_9": "Ring Mail",
+      "armor_10": "Chain Mail",
+      "armor_11": "Splint",
+      "armor_12": "Plate",
+      "armor_13": "Shield"
     }
   ]
+
 }
+
+
 
 // 
 //   {
