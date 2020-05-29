@@ -12,7 +12,7 @@ let characterOptions =
 
 function menu(user) {
   rl.question(chalk.hex('#4298eb')(characterOptions), (input) => {
-    switch (input.trim()) {
+    switch (input.trim().toUpperCase()) {
       case '1':
         console.log('CHARACTERS');
         break;
@@ -20,7 +20,7 @@ function menu(user) {
         console.log('Entered character creator. \n');
         createCharacter(user.username);
         break;
-      case 'exit':
+      case 'X':
         rl.close();
         process.exit();
         break;
