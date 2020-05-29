@@ -9,7 +9,9 @@ const superagent = require('superagent');
 // the readline module allows you to prompt users and capture input
 const rl = require('../readline');
 
-async function charGet(username) {
+const menuPlus = require('../menuPlus');
+
+async function charGet(user) {
   console.log(
     chalk.green(
       'Here are your previously created characters.',
@@ -17,7 +19,7 @@ async function charGet(username) {
   );
 
   try {
-    let response = await superagent.get(`https://cf-dnd-character-creator.herokuapp.com/v1/api/${username}/characters`);
+    let response = await superagent.get(`https://cf-dnd-character-creator.herokuapp.com/v1/api/${user.username}/characters`);
     
     let charList = response.body;
   
@@ -34,10 +36,13 @@ async function charGet(username) {
     } else {
       console.log('Your party is empty. Please try making a character!');
     }
+    // menuPlus(user);
+
   } catch(e){
     console.log(e);
   }
 
+  
 };
 
 
