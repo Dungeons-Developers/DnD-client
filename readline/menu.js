@@ -15,11 +15,11 @@ function menu(user) {
   rl.question(chalk.hex('#4298eb')(characterOptions), (input) => {
     switch (input.trim().toUpperCase()) {
       case '1':
-        getCharacter(user.username);
+        getCharacter(user);
         break;
       case '2':
         console.log('Entered character creator. \n');
-        createCharacter(user.username);
+        createCharacter(user);
         break;
       case 'X':
         rl.close();

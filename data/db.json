@@ -1,6 +1,5 @@
 {
-  "pre_made_Characters": [
-    {
+  "pre_made_Characters": {
       "barbarian": {
           "name": "Konan",
           "class": "Barbarian",
@@ -11,16 +10,14 @@
               "skill_1": "Intimidation",
               "skill_2": "Perception"
             },
-          "equipment": [
-            {
+          "equipment": {
               "armor": "Leather",
               "adventure_packs": "Adventuring Gear",
               "weapons": {
                   "choice_1": "javelin",
                   "choice_2": "Great Axe"
                 }
-            }
-          ],
+            },
           "ability_scores": {
               "str": 13,
               "dex": 14,
@@ -29,9 +26,7 @@
               "wis": 14,
               "cha": 15
             }
-        }
-    },
-    {
+        },
       "bard": {
           "name": "Dan The Man",
           "class": "Bard",
@@ -42,16 +37,14 @@
               "skill_1": "Animal Handling",
               "skill_3": "Deception"
             },
-          "equipment": [
-            {
+          "equipment": {
               "armor": "Padded Leather",
               "adventure_packs": "Dungeoners Kit",
               "weapons": {
                   "choice_1": "Javelin",
                   "choice_2": "Dagger"
                 }
-            }
-          ],
+            },
           "ability_scores": {
               "str": 13,
               "dex": 14,
@@ -60,9 +53,7 @@
               "wis": 14,
               "cha": 15
             }
-        }
-    },
-    {
+        },
       "cleric": {
           "name": "Jendar Kriliak",
           "class": "Cleric",
@@ -73,16 +64,14 @@
               "skill_1": "Medicine",
               "skill_2": "Deception"
             },
-          "equipment": [
-            { 
+          "equipment": { 
               "armor": "Leather",
               "adventure_packs": "Adventure Gear",
               "weapons": {
                   "choice_1": "Javelin",
                   "choice_2": "Dagger"
                 }
-            }
-          ],
+            },
           "ability_scores": {
               "str": 13,
               "dex": 14,
@@ -91,9 +80,7 @@
               "wis": 14,
               "cha": 15
             }
-        }
-    },
-    {
+        },
       "fighter": {
           "name": "Dirrbick",
           "class": "Fighter",
@@ -104,16 +91,14 @@
               "skill_1": "Intimidate",
               "skill_2": "Search"
             },
-          "equipment": [
-            {
+          "equipment": {
               "armor": "Chain Mail",
               "adventure_packs": "Dungeoners Kit",
               "weapons": {
                   "choice_1": "Great Axe",
                   "choice_2": "War Hammer"
                 }
-            }
-          ],
+            },
           "ability_scores": {
               "str": 16,
               "dex": 14,
@@ -124,8 +109,7 @@
             }
 
         }
-    }
-  ],
+  },
   "races": [
     {
       "dragonborn": "Dragonborn",
@@ -302,52 +286,3 @@
   ]
 
 }
-
-
-
-// 
-//   {
-//     "index": "fighter",
-//     "name": "Fighter"
-//   },
-//   {
-//     "index": "paladin",
-//     "name": "Paladin"
-//   },
-//   {
-//     "index": "ranger",
-//     "name": "Ranger"
-//   },
-//   {
-//     "index": "rogue",
-//     "name": "Rogue"
-//   },
-//   {
-//     "index": "sorcerer",
-//     "name": "Sorcerer"
-//   },
-//   {
-//     "index": "wizard",
-//     "name": "Wizard"
-//   },
-//   {
-//     "index": "monk",
-//     "name": "Monk"
-//   },
-//   {
-//     "index": "warlock",
-//     "name": "Warlock"
-//   },
-//   {
-//     "index": "druid",
-//     "name": "Druid"
-//   }
-// ],
-// "skills": [
-
-// ],
-// "ability-scores": [
-//   {
-//     ""
-//   }
-// ],

@@ -9,7 +9,11 @@ const superagent = require('superagent');
 // the readline module allows you to prompt users and capture input
 const rl = require('../readline');
 
-async function createCharacter(username) {
+const menuPlus = require('../menuPlus');
+
+const charDB = require('../../data/db.json');
+
+async function createCharacter(user) {
   console.log(
     chalk.green(
       'Please fill out the following information about your character:',
@@ -41,27 +45,36 @@ async function createCharacter(username) {
 
   input = await rl.ask(
     chalk.blue(
-      '\nWhat is your characters class? \n1. Bard \n2. Paladin \n3. Cleric\n',
+      '\nWhat is your characters class? \n1. Barbarian \n2. Bard \n3. Cleric \n4. Fighter\n',
     ),
   );
   let charClass;
   switch (input) {
     case '1':
-      charClass = 'Bard';
+      charClass = 'Barbarian';
       break;
     case '2':
-      charClass = 'Paladin';
+      charClass = 'Bard';
       break;
     case '3':
       charClass = 'Cleric';
+      break;
+    case '4':
+      charClass = 'Fighter';
       break;
     default:
       break;
   }
 
+  let equipment = charDB.pre_made_Characters[charClass.toLowerCase()].equipment;
+  let abilityScores = charDB.pre_made_Characters[charClass.toLowerCase()].ability_scores;
+  let skills = charDB.pre_made_Characters[charClass.toLowerCase()].proficient_skills;
+  let alignment = charDB.pre_made_Characters[charClass.toLowerCase()].alignment;
+  let deity = charDB.pre_made_Characters[charClass.toLowerCase()].deity;
+
   let response = await superagent
     .post('https://cf-dnd-character-creator.herokuapp.com/v1/api/character')
-    .send({ user: username, name: charName, class: charClass, race: charRace });
+    .send({ user: user.username, name: charName, class: charClass, race: charRace, alignment: alignment, deity: deity, skills: skills, equipment: equipment, abilityScores: abilityScores});
 
   console.log(
     chalk.green(
@@ -70,6 +83,7 @@ async function createCharacter(username) {
   );
 
   // write a transition here!
+  // menuPlus(user);
 }
 
 module.exports = createCharacter;
