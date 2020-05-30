@@ -48,8 +48,16 @@ async function charGet(user) {
           return;
         }
 
-        console.log('Your Selected Character:', charList[charSelect-1]);
-        resolve(charList[charSelect-1]);
+        let selection = charList[charSelect-1];
+        console.log('Your Selected Character:');
+        printChar(selection);
+       
+          
+        // Object.entries(charList[charSelect-1]).forEach(pair => {
+
+        // });
+
+        resolve(selection);
         return;
 
       } else {
@@ -65,6 +73,18 @@ async function charGet(user) {
 
   
 };
+
+function printChar(selection) {
+   //TODO: change console log colors
+   console.log(`Name - ${selection.name}`);
+   console.log(`Race - ${selection.race}`);
+   console.log(`Class - ${selection.class}`);
+   console.log(chalk.green('Alignment - ') + `${selection.alignment}`);
+   console.log(`Deity - ${selection.deity}`);
+   console.log(`Proficiencies - \n\t${selection.proficient_skills.skill_1} \n\t${selection.proficient_skills.skill_2}`);
+   console.log(`Equipment - \n\tArmor: ${selection.equipment.armor}\n\tAdventure Pack: ${selection.equipment.adventure_packs}\n\tWeapons -\n\t\t 1: ${selection.equipment.weapons.choice_1}\n\t\t 2: ${selection.equipment.weapons.choice_2}`);
+   console.log(`Ability Scores - \n\tSTR: ${selection.ability_scores.str} | DEX: ${selection.ability_scores.dex} | CON: ${selection.ability_scores.con} | INT: ${selection.ability_scores.int} | WIS: ${selection.ability_scores.wis} | CHA: ${selection.ability_scores.cha}`);
+}
 
 
 module.exports = charGet;

@@ -40,6 +40,7 @@ async function selectMenu(user, character){
   rl.question(chalk.hex('#4298eb')(charSelectOptions), async (input) => {
     switch(input.trim().toUpperCase()) {
       case '1':
+        
         await deleteCharacter(character);
         menu(user);
         break;
