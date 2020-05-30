@@ -14,7 +14,7 @@ const rl = require('../readline');
 // const UserModel = new Model(userSchema);
 
 // menu is a modular function that displays application options to the user
-const menu = require('../menu');
+const menu = require('../menu').menu;
 
 // function login
 // prompts the user for login information: username, password.

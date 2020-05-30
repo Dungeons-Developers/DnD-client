@@ -9,8 +9,6 @@ const superagent = require('superagent');
 // the readline module allows you to prompt users and capture input
 const rl = require('../readline');
 
-const menuPlus = require('../menuPlus');
-
 async function charGet(user) {
   return new Promise( async (resolve, reject ) => {
     console.log(
@@ -34,15 +32,35 @@ async function charGet(user) {
           );
       
         });
+
+        let charSelect = await rl.ask(chalk.hex('#4298eb')('Select a character to see more details or type "M" to go back to the main menu.'));
+
+        
+        if (charSelect.toUpperCase() === 'M') {
+          console.log('Returning to main menu...');
+          resolve();
+          return;
+        }
+
+        if (charSelect > charList.length) {
+          console.log('That character does not exist! Returning to main menu...');
+          resolve();
+          return;
+        }
+
+        console.log('Your Selected Character:', charList[charSelect-1]);
+        resolve(charList[charSelect-1]);
+        return;
+
       } else {
         console.log('Your party is empty. Please try making a character!');
       }
-      // menuPlus(user);
   
     } catch(e){
       console.log(e);
     }
-    resolve();
+    console.log('END OF THE GET FUNCTION');
+    // resolve();
   })
 
   
