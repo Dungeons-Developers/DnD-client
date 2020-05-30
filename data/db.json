@@ -22,7 +22,7 @@
               "str": 13,
               "dex": 14,
               "con": 15,
-              "int": 18,
+              "int": 9,
               "wis": 14,
               "cha": 15
             }
@@ -57,7 +57,7 @@
       "cleric": {
           "name": "Jendar Kriliak",
           "class": "Cleric",
-          "race": "Dark Elf",
+          "race": "Half-Elf",
           "alignment": "Chaotic Evil",
           "deity": "Mystra, God of Magic",
           "proficient_skills": {
@@ -81,8 +81,35 @@
               "cha": 15
             }
         },
+      "druid": {
+          "name": "Farydark",
+          "class": "Druid",
+          "race": "Elf",
+          "alignment": "Neutral Good",
+          "deity": "Selune, Goddess of the Moon",
+          "proficient_skills": {
+              "skill_1": "Animal Handling",
+              "skill_2": "Medicine"
+            },
+          "equipment": { 
+              "armor": "Leather",
+              "adventure_packs": "Explorer Pack",
+              "weapons": {
+                  "choice_1": "Javelin",
+                  "choice_2": "Spear"
+                }
+            },
+          "ability_scores": {
+              "str": 13,
+              "dex": 14,
+              "con": 15,
+              "int": 15,
+              "wis": 15,
+              "cha": 17
+            }
+      },
       "fighter": {
-          "name": "Dirrbick",
+          "name": "Kroy",
           "class": "Fighter",
           "race": "Dwarven",
           "alignment": "Lawful Good",
@@ -107,20 +134,256 @@
               "wis": 13,
               "cha": 14
             }
-
+        },
+      "monk": {
+        "name":"Sylhana",
+        "class": "Monk",
+        "race": "Half-Elf",
+        "alignment": "Neutral",
+        "deity": "Akadi, Queen of Air",
+        "proficient_skills": {
+            "skill_1": "Acrobatics",
+            "skill_2": "Perception"
+          },
+        "equipment": {
+            "armor": "None",
+            "adventure_packs": "Explorers Pack",
+            "weapons": {
+                "choice_1": "Shortsword",
+                "choice_2": "Quarterstaff"
+              }
+          },
+        "ability_scores": {
+            "str": 10,
+            "dex": 16,
+            "con": 14,
+            "int": 13,
+            "wis": 14,
+            "cha": 11
+          }
+      },
+      "paladin": {
+          "name": "",
+          "class": "Paladin",
+          "race": "Human",
+          "alignment": "Lawful Good",
+          "deity": "Tyr, God of Justice",
+          "proficient_skills": {
+              "skill_1": "Persuasion",
+              "skill_2": "Religion"
+            },
+          "equipment": {
+              "armor": "Chain Mail",
+              "adventure_packs": "Explorer's Pack",
+              "weapons": {
+                  "choice_1": "Shield",
+                  "choice_2": "Longsword"
+                }
+            },
+          "ability_scores": {
+              "str": 14,
+              "dex": 12,
+              "con": 14,
+              "int": 11,
+              "wis": 17,
+              "cha": 15
+            }
+      },
+      "ranger": {
+        "name": "Jim",
+          "class": "Ranger",
+          "race": "Halfling",
+          "alignment": "Neutral Evil",
+          "deity": "Bhaal, God of Murder",
+          "proficient_skills": {
+              "skill_1": "Animal Handling",
+              "skill_2": "Perception"
+            },
+          "equipment": {
+              "armor": "Leather",
+              "adventure_packs": "Explorer's Pack",
+              "weapons": {
+                  "choice_1": "Longbow",
+                  "choice_2": "Arrow"
+                }
+            },
+          "ability_scores": {
+              "str": 13,
+              "dex": 15,
+              "con": 14,
+              "int": 11,
+              "wis": 14,
+              "cha": 12
+            }
+          },
+      "rogue": {     
+         "name": "Switchblade",
+          "class": "Rogue",
+          "race": "Gnome",
+          "alignment": "Chaotic Evil",
+          "deity": "Garl Glittergold, Gnome God of Trickery and Wiles",
+          "proficient_skills": {
+              "skill_1": "Sleight of Hand",
+              "skill_2": "Stealth"
+            },
+          "equipment": {
+              "armor": "Leather",
+              "adventure_packs": "Burglars Pack",
+              "weapons": {
+                  "choice_1": "Dagger",
+                  "choice_2": "Longbow"
+                }
+            },
+          "ability_scores": {
+              "str": 14,
+              "dex": 16,
+              "con": 15,
+              "int": 13,
+              "wis": 12,
+              "cha": 14
+            }
+      },
+      "sorcerer": {
+          "name": "Galadriel",
+          "class": "Sorcerer",
+          "race": "Elf",
+          "alignment": "Chaotic Neutral",
+          "deity": "Mielikki, Goddess of Forests",
+          "proficient_skills": {
+              "skill_1": "Nature",
+              "skill_2": "Perception"
+            },
+          "equipment": { 
+              "armor": "Padded",
+              "adventure_packs": "Diplomats Pack",
+              "weapons": {
+                  "choice_1": "Morningstar",
+                  "choice_2": "Dagger"
+                }
+            },
+          "ability_scores": {
+              "str": 11,
+              "dex": 15,
+              "con": 12,
+              "int": 17,
+              "wis": 18,
+              "cha": 13
+            }
+      },
+      "warlock": {
+          "name": "DrImpossible",
+          "class": "Warlock",
+          "race": "Tiefling",
+          "alignment": "Neutral Evil",
+          "deity": "Bane, God of Tyranny",
+          "proficient_skills": {
+              "skill_1": "Arcana",
+              "skill_2": "Intimidation"
+            },
+          "equipment": { 
+              "armor": "Padded",
+              "adventure_packs": "Scholar's Pack",
+              "weapons": {
+                  "choice_1": "Quarterstaff",
+                  "choice_2": "Dagger"
+                }
+            },
+          "ability_scores": {
+              "str": 9,
+              "dex": 12,
+              "con": 10,
+              "int": 18,
+              "wis": 12,
+              "cha": 18
+            }
+      },
+      "wizard": {
+          "name": "Ice King",
+          "class": "Wizard",
+          "race": "Human",
+          "alignment": "Chaotic Good",
+          "deity": "Talos",
+          "proficient_skills": {
+            "skill_1": "Arcana",
+            "skill_2": "Insight"
+          },
+          "equipment": {
+            "armor": "Leather",
+            "adventure_packs": "Scholar's Pack",
+            "weapons": {
+              "choice_1": "Quarterstaff",
+              "choice_2": "Orb"
+            }
+          },
+          "ability_scores": {
+            "str": 11,
+            "dex": 14,
+            "con": 10,
+            "int": 18,
+            "wis": 14,
+            "cha": 13
+          }
         }
   },
   "races": [
     {
-      "dragonborn": "Dragonborn",
-      "dwarf": "Dwarf",
-      "elf": "Elf",
-      "gnome": "Gnome",
-      "half_elf": "Half-Elf",
-      "half_orc": "Half-Orc",
-      "halfling": "Halfling",
-      "human": "Human",
-      "tiefling": "Tiefling"
+      "name": "Dragonborn",
+      "ability_bonus": [
+        { "stat": "str", "bonus": 2}, { "stat": "cha", "bonus": 1 }
+      ]      
+    },
+    {
+      "name": "Dwarf",
+      "ability_bonus": [
+        { "stat": "con", "bonus": 2}
+      ]
+    },
+    {
+      "name": "Elf",
+      "ability_bonus": [
+        { "stat": "con", "bonus": 2}
+      ]
+    },
+    {
+      "name": "Gnome",
+      "ability_bonus": [
+        { "stat": "int", "bonus": 2}
+      ]
+    },
+    {
+      "name": "Half-Elf",
+      "ability_bonus": [
+        { "stat": "cha", "bonus": 2}
+      ]
+    },
+    {
+      "name": "Half-Orc",
+      "ability_bonus": [
+        { "stat": "str", "bonus": 2}, { "stat": "con", "bonus": 1}
+      ]
+    },
+    {
+      "name": "Halfling",
+      "ability_bonus": [
+        { "stat": "dex", "bonus": 2}
+      ]
+    },
+    {
+      "name": "Human",
+      "ability_bonus": [
+        { "stat": "str", "bonus": 1},
+        { "stat": "dex", "bonus": 1},
+        { "stat": "con", "bonus": 1},
+        { "stat": "int", "bonus": 1},
+        { "stat": "wis", "bonus": 1},
+        { "stat": "cha", "bonus": 1}
+      ]
+    },
+    {
+      "name": "Tiefling",
+      "ability_bonus": [
+        { "stat": "int", "bonus": 1},{ "stat": "cha","bonus": 2 }
+      ]
     }
   ],
   "classes": [
@@ -174,10 +437,10 @@
       "weapon_31": "Warhammer",
       "weapon_32": "Whip",
       "weapon_33": "Blowgun",
-      "weapon_34": "Crossbow, hand",
+      "weapon_34": "Crossbow, Hand",
       "weapon_35": "Crossbow, Heavy",
       "weapon_36": "Longbow",
-      "weapon_37": "Net?"
+      "weapon_37": "Net"
     }
   ],
   "alignment": [
@@ -264,7 +527,7 @@
       "pack_4": "Entertainers Pack",
       "pack_5": "Explorers Pack",
       "pack_6": "Priests Pack",
-      "pack_7": "Scholar's Pack"
+      "pack_7": "Scholars Pack"
     }
   ],
   "armor": [
@@ -275,7 +538,7 @@
       "armor_4": "Hide",
       "armor_5": "Chain Shirt",
       "armor_6": "Scale Mail",
-      "armor_7": "Breatplate",
+      "armor_7": "Breastplate",
       "armor_8": "Half Plate",
       "armor_9": "Ring Mail",
       "armor_10": "Chain Mail",
@@ -284,5 +547,4 @@
       "armor_13": "Shield"
     }
   ]
-
 }
