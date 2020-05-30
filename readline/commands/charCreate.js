@@ -9,8 +9,6 @@ const superagent = require('superagent');
 // the readline module allows you to prompt users and capture input
 const rl = require('../readline');
 
-const menuPlus = require('../menuPlus');
-
 const charDB = require('../../data/db.json');
 
 async function createCharacter(user) {
@@ -23,24 +21,42 @@ async function createCharacter(user) {
       ),
     );
   
-    let charName = await rl.ask(chalk.blue('\nWhat is your characters name? '));
+    let name = await rl.ask(chalk.blue('\nWhat is your characters name? '));
   
     let input = await rl.ask(
       chalk.blue(
-        '\nWhat is your characters race? \n1. Human \n2. Elf \n3. Half-Orc\n',
+        '\nWhat is your characters race? \n1. Dragonborn \n2. Dwarf \n3. Elf \n4. Gnome \n5. Half-Elf \n6. Half-Orc \n7. Halfling \n8. Human \n9. Tiefling \n',
       ),
     );
   
-    let charRace;
+    let race;
     switch (input) {
       case '1':
-        charRace = 'Human';
+        race = 'Dragonborn';
         break;
       case '2':
-        charRace = 'Elf';
+        race = 'Dwarf';
         break;
       case '3':
-        charRace = 'Half-Orc';
+        race = 'Elf';
+        break;
+      case '4':
+        race = 'Gnome';
+        break;
+      case '5':
+        race = 'Half-Elf';
+        break;
+      case '6':
+        race = 'Half-Orc';
+        break;
+      case '7':
+        race = 'Halfling';
+        break;
+      case '8':
+        race = 'Human';
+        break;
+      case '9':
+        race = 'Tiefling';
         break;
       default:
         break;
@@ -48,7 +64,7 @@ async function createCharacter(user) {
   
     input = await rl.ask(
       chalk.blue(
-        '\nWhat is your characters class? \n1. Barbarian \n2. Bard \n3. Cleric \n4. Fighter\n',
+        '\nWhat is your characters class? \n1. Barbarian \n2. Bard \n3. Cleric \n4. Druid \n5. Fighter \n6. Monk \n7. Paladin \n8. Ranger \n9. Rogue \n10. Sorcerer \n11. Warlock \n12. Wizard \n',
       ),
     );
     let charClass;
@@ -63,21 +79,42 @@ async function createCharacter(user) {
         charClass = 'Cleric';
         break;
       case '4':
+        charClass = 'Druid';
+        break;
+      case '5':
         charClass = 'Fighter';
+        break;
+      case '6':
+        charClass = 'Monk';
+        break;
+      case '7':
+        charClass = 'Paladin';
+        break;
+      case '8':
+        charClass = 'Ranger';
+        break;
+      case '9':
+        charClass = 'Rogue';
+        break;
+      case '10':
+        charClass = 'Sorcerer';
+        break;
+      case '11':
+        charClass = 'Warlock';
+        break;
+      case '12':
+        charClass = 'Wizard';
         break;
       default:
         break;
     }
   
-    let equipment = charDB.pre_made_Characters[charClass.toLowerCase()].equipment;
-    let abilityScores = charDB.pre_made_Characters[charClass.toLowerCase()].ability_scores;
-    let skills = charDB.pre_made_Characters[charClass.toLowerCase()].proficient_skills;
-    let alignment = charDB.pre_made_Characters[charClass.toLowerCase()].alignment;
-    let deity = charDB.pre_made_Characters[charClass.toLowerCase()].deity;
+    // attach name, race, skills
+    let newChar = {...charDB.pre_made_Characters[charClass.toLowerCase()], name, race, user: user.username};
   
     let response = await superagent
       .post('https://cf-dnd-character-creator.herokuapp.com/v1/api/character')
-      .send({ user: user.username, name: charName, class: charClass, race: charRace, alignment: alignment, deity: deity, skills: skills, equipment: equipment, abilityScores: abilityScores});
+      .send(newChar);
   
     console.log(
       chalk.green(
@@ -87,8 +124,6 @@ async function createCharacter(user) {
     resolve();
   });
 
-  // write a transition here!
-  // menuPlus(user);
 }
 
 module.exports = createCharacter;
