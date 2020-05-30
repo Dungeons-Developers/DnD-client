@@ -48,6 +48,7 @@ async function charGet(user) {
           return;
         }
 
+        console.log('Your Selected Character:', charList[charSelect-1]);
         resolve(charList[charSelect-1]);
         return;
 
