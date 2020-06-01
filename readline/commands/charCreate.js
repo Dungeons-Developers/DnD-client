@@ -29,88 +29,29 @@ async function createCharacter(user) {
       ),
     );
   
-    let race;
-    switch (input) {
-      case '1':
-        race = 'Dragonborn';
-        break;
-      case '2':
-        race = 'Dwarf';
-        break;
-      case '3':
-        race = 'Elf';
-        break;
-      case '4':
-        race = 'Gnome';
-        break;
-      case '5':
-        race = 'Half-Elf';
-        break;
-      case '6':
-        race = 'Half-Orc';
-        break;
-      case '7':
-        race = 'Halfling';
-        break;
-      case '8':
-        race = 'Human';
-        break;
-      case '9':
-        race = 'Tiefling';
-        break;
-      default:
-        break;
-    }
+    let race = charDB.races[input - 1].name;
   
     input = await rl.ask(
       chalk.blue(
-        '\nWhat is your characters class? \n1. Barbarian \n2. Bard \n3. Cleric \n4. Druid \n5. Fighter \n6. Monk \n7. Paladin \n8. Ranger \n9. Rogue \n10. Sorcerer \n11. Warlock \n12. Wizard \n',
-      ),
+        '\nWhat is your characters class? \n1. Barbarian \n2. Bard \n3. Cleric \n4. Druid \n5. Fighter \n6. Monk \n7. Paladin \n8. Ranger \n9. Rogue \n10. Sorcerer \n11. Warlock \n12. Wizard \n'
+      )
     );
-    let charClass;
-    switch (input) {
-      case '1':
-        charClass = 'Barbarian';
-        break;
-      case '2':
-        charClass = 'Bard';
-        break;
-      case '3':
-        charClass = 'Cleric';
-        break;
-      case '4':
-        charClass = 'Druid';
-        break;
-      case '5':
-        charClass = 'Fighter';
-        break;
-      case '6':
-        charClass = 'Monk';
-        break;
-      case '7':
-        charClass = 'Paladin';
-        break;
-      case '8':
-        charClass = 'Ranger';
-        break;
-      case '9':
-        charClass = 'Rogue';
-        break;
-      case '10':
-        charClass = 'Sorcerer';
-        break;
-      case '11':
-        charClass = 'Warlock';
-        break;
-      case '12':
-        charClass = 'Wizard';
-        break;
-      default:
-        break;
-    }
-  
+    let charClass = charDB.classes[input - 1];
+
+    let skillChoice_1 = await rl.ask(
+      chalk.blue(
+        '\nPlease choose a skill (1/2) \n1. Acrobatics \n2. Animal Handling \n3. Arcana \n4. Athletics \n5. Deception \n6. History \n7. Insight \n8. Intimidation \n9. Investigation \n10. Medicine \n11. Nature \n12. Perception \n13. Performance \n14. Persuasion \n15. Religion \n16. Sleight of Hand \n17. Stealth \n18. Survival \n'
+      )
+    );
+    let skillChoice_2 = await rl.ask(
+      chalk.blue('\nPlease choose another skill (2/2)\n')
+    );
+
+    let skill_1 = charDB.skills[skillChoice_1 - 1];
+    let skill_2 = charDB.skills[skillChoice_2 - 1];
+
     // attach name, race, skills
-    let newChar = {...charDB.pre_made_Characters[charClass.toLowerCase()], name, race, user: user.username};
+    let newChar = {...charDB.pre_made_Characters[charClass.toLowerCase()], name, race, user: user.username, proficient_skills: { skill_1, skill_2 }};
   
     let response = await superagent
       .post('https://cf-dnd-character-creator.herokuapp.com/v1/api/character')
