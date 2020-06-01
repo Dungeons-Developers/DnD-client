@@ -1,4 +1,4 @@
-# DnD
+# DnD NPM Package
 A space for our Dungeons and Dragons App Back End Development project!
 
 ### Team Members
