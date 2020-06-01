@@ -27,8 +27,14 @@ rl.on('line', (command) => {
 });
 
 // promise/async questions function
-rl.ask = (prompt) => {
+rl.ask = (prompt, options = null) => {
   return new Promise((resolve, reject) => {
+    if (options) {
+      options.forEach((option, index) => {
+        prompt += chalk.green(`\n${index + 1}. ${option}`);
+      });
+      prompt += '\n\n- ';
+    }
     rl.question(prompt, (answer) => {
       resolve(answer);
     });
