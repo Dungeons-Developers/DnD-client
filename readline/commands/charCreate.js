@@ -88,8 +88,10 @@ async function createCharacter(user) {
 
     let equipment = await charOptions.equipment();
 
+    let ability_scores = await charOptions.abilityScores();
+
     // attach name, race, skills
-    let newChar = {...charDB.pre_made_Characters[charClass.toLowerCase()], name, race, user: user.username, proficient_skills: { skill_1, skill_2 }, deity, equipment, alignment};
+    let newChar = {...charDB.pre_made_Characters[charClass.toLowerCase()], name, race, user: user.username, proficient_skills: { skill_1, skill_2 }, deity, equipment, alignment, ability_scores};
   
     let response = await superagent
       .post('https://cf-dnd-character-creator.herokuapp.com/v1/api/character')
