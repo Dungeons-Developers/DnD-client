@@ -50,7 +50,7 @@ async function skillOne() {
 async function skillTwo() {
   return new Promise( async (resolve, reject) => {
     let choice_2 = await rl.ask(
-      chalk.blue('\nPlease choose another skill (2/2)\n- ')
+      chalk.blue('\nPlease choose another skill (2/2)\n') + '- '
     );
 
     resolve(choice_2);
