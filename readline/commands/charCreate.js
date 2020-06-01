@@ -38,6 +38,13 @@ async function createCharacter(user) {
 
     let charClass = charDB.classes[input - 1];
 
+    let alignmentChoice = await rl.ask(
+      chalk.blue('\nWHat is your characters alignment?\n'),
+      charDB.alignment
+    );
+
+    let alignment = charDB.alignment[alignmentChoice - 1];
+
     let skillChoice_1 = await rl.ask(
       chalk.blue('\nPlease choose a skill (1/2)\n'),
       charDB.skills
@@ -97,7 +104,7 @@ async function createCharacter(user) {
     }
 
     // attach name, race, skills
-    let newChar = {...charDB.pre_made_Characters[charClass.toLowerCase()], name, race, user: user.username, proficient_skills: { skill_1, skill_2 }, deity, equipment};
+    let newChar = {...charDB.pre_made_Characters[charClass.toLowerCase()], name, race, user: user.username, proficient_skills: { skill_1, skill_2 }, deity, equipment, alignment};
   
     let response = await superagent
       .post('https://cf-dnd-character-creator.herokuapp.com/v1/api/character')
