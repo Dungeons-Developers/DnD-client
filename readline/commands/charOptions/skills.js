@@ -4,18 +4,20 @@ const rl = require('../../readline');
 const charDB = require('../../../data/db.json');
 const chalk = require('chalk');
 
+const invalid = require('./invalid.js');
+
 async function skills() {
   return new Promise( async (resolve, reject) => {
     let choice_1 = await skillOne();
 
-    while( invalid(choice_1) ) {
+    while( invalid(choice_1, charDB.skills) ) {
       console.log('\nThat skill is not listed. Try again.\n');
       choice_1 = await skillOne();
     }
 
     let choice_2 = await skillTwo();
 
-    while ( choice_1 === choice_2 || invalid(choice_2) ) {
+    while ( choice_1 === choice_2 || invalid(choice_2, charDB.skills) ) {
       if (choice_1 === choice_2) {
         console.log(chalk.red('\nCannot choose two of the same skill.'));
       } else {
@@ -55,7 +57,8 @@ async function skillTwo() {
   });
 }
 
-function invalid(choice) {
-  return !charDB.skills[parseInt(choice) - 1];
-}
+// function invalid(choice) {
+//   return !charDB.skills[parseInt(choice) - 1];
+// }
+
 module.exports = skills;
