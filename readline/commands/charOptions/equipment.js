@@ -4,6 +4,7 @@ const rl = require('../../readline');
 const charDB = require('../../../data/db.json');
 const chalk = require('chalk');
 
+const invalid = require('./invalid.js');
 
 async function equipment() {
   return new Promise( async (resolve, reject) => {
@@ -12,6 +13,10 @@ async function equipment() {
       charDB.armor
     );
 
+    while(invalid(armorChoice, charDB.armor)) {
+      armorChoice = await rl.ask(chalk.red('\nThat armor is not listed. Please try again.\n') + '- ')
+    }
+
     let armor = charDB.armor[armorChoice - 1];
 
     let weaponChoice_1 = await rl.ask(
@@ -19,9 +24,17 @@ async function equipment() {
       charDB.weapons
     );
 
+    while(invalid(weaponChoice_1, charDB.weapons)) {
+      weaponChoice_1 = await rl.ask(chalk.red('\nThat weapon is not listed. Please try again.\n') + '- ')
+    }
+
     let weaponChoice_2 = await rl.ask(
       chalk.blue('\nPlease choose another weapon (2/2)\n- ')
     );
+
+    while(invalid(weaponChoice_2, charDB.weapons)) {
+      weaponChoice_2 = await rl.ask(chalk.red('\nThat weapon is not listed. Please try again.\n') + '- ')
+    }
 
     let weapons = { 
       choice_1: charDB.weapons[weaponChoice_1], 
@@ -32,6 +45,10 @@ async function equipment() {
       chalk.blue('\nPlease choose your adventuring pack\n'),
       charDB.adventuring_packs
     );
+
+    while(invalid(packChoice, charDB.adventuring_packs)) {
+      packChoice = await rl.ask(chalk.red('\nThat pack is not listed. Please try again.\n') + '- ')
+    }
 
     let adventure_packs = charDB.adventuring_packs[packChoice - 1];
 
