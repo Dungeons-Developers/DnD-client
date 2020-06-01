@@ -1,0 +1,61 @@
+'use strict';
+
+const rl = require('../../readline');
+const charDB = require('../../../data/db.json');
+const chalk = require('chalk');
+
+async function skills() {
+  return new Promise( async (resolve, reject) => {
+    let choice_1 = await skillOne();
+
+    while( invalid(choice_1) ) {
+      console.log('\nThat skill is not listed. Try again.\n');
+      choice_1 = await skillOne();
+    }
+
+    let choice_2 = await skillTwo();
+
+    while ( choice_1 === choice_2 || invalid(choice_2) ) {
+      if (choice_1 === choice_2) {
+        console.log(chalk.red('\nCannot choose two of the same skill.'));
+      } else {
+        console.log(chalk.red('\nThat skill is not listed. Try again.'))
+      }
+      choice_2 = await skillTwo();
+    }
+
+    resolve(
+      { 
+        skill_1: charDB.skills[choice_1 - 1],
+        skill_2: charDB.skills[choice_2 - 1]
+      }
+    );
+  });
+}
+
+async function skillOne() {
+  return new Promise( async (resolve, reject) => {
+    let choice_1 = await rl.ask(
+      chalk.blue('\nPlease choose a skill (1/2)\n'),
+      charDB.skills
+    );
+
+    resolve(choice_1);
+  });
+}
+
+
+async function skillTwo() {
+  return new Promise( async (resolve, reject) => {
+    let choice_2 = await rl.ask(
+      chalk.blue('\nPlease choose another skill (2/2)\n- ')
+    );
+
+    resolve(choice_2);
+  });
+}
+
+function invalid(choice) {
+  return !charDB.skills[parseInt(choice) - 1];
+}
+module.exports = skills;

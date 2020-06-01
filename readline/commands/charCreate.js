@@ -11,6 +11,8 @@ const rl = require('../readline');
 
 const charDB = require('../../data/db.json');
 
+const charOptions = require('./charOptions/options.js');
+
 async function createCharacter(user) {
 
   return new Promise(async (resolve, reject) => {
@@ -45,63 +47,46 @@ async function createCharacter(user) {
 
     let alignment = charDB.alignment[alignmentChoice - 1];
 
-    let skillChoice_1 = await rl.ask(
-      chalk.blue('\nPlease choose a skill (1/2)\n'),
-      charDB.skills
-    );
+    let { skill_1, skill_2 } = await charOptions.skills();
 
-    let skillChoice_2 = await rl.ask(
-      chalk.blue('\nPlease choose another skill (2/2)\n- ')
-    );
+    // let deityChoice = await rl.ask(
+    //   chalk.blue('\nWhich Deity will your character worship?\n'),
+    //   charDB.deity
+    // );
 
-    let skill_1 = charDB.skills[skillChoice_1 - 1];
-    let skill_2 = charDB.skills[skillChoice_2 - 1];
+    // let deity = charDB.deity[deityChoice - 1];
 
-    let deityChoice = await rl.ask(
-      chalk.blue('\nWhich Deity will your character worship?\n'),
-      charDB.deity
-    );
+    let deity = await charOptions.deity();
 
-    let deity = charDB.deity[deityChoice - 1];
+    // let armorChoice = await rl.ask(
+    //   chalk.blue('\nNext we will choose your characters equipment...\n\nPlease choose your armor.\n'),
+    //   charDB.armor
+    // );
 
-    let armorChoice;
-    let weaponChoice_1;
-    let weaponChoice_2;
-    let packChoice;
+    // let armor = charDB.armor[armorChoice - 1];
 
+    // let weaponChoice_1 = await rl.ask(
+    //   chalk.blue('\nPlease choose a weapon (1/2)\n'),
+    //   charDB.weapons
+    // );
 
-    armorChoice = await rl.ask(
-      chalk.blue('\nNext we will choose your characters equipment...\n\nPlease choose your armor.\n'),
-      charDB.armor
-    );
+    // let weaponChoice_2 = await rl.ask(
+    //   chalk.blue('\nPlease choose another weapon (2/2)\n- ')
+    // );
 
-    let armor = charDB.armor[armorChoice - 1];
+    // let weapons = { 
+    //   choice_1: charDB.weapons[weaponChoice_1], 
+    //   choice_2: charDB.weapons[weaponChoice_2] 
+    // }
 
-    weaponChoice_1 = await rl.ask(
-      chalk.blue('\nPlease choose a weapon (1/2)\n'),
-      charDB.weapons
-    );
-    weaponChoice_2 = await rl.ask(
-      chalk.blue('\nPlease choose another weapon (2/2)\n- ')
-    );
+    // let packChoice = await rl.ask(
+    //   chalk.blue('\nPlease choose your adventuring pack\n'),
+    //   charDB.adventuring_packs
+    // );
 
-    let weapons = { 
-      choice_1: charDB.weapons[weaponChoice_1], 
-      choice_2: charDB.weapons[weaponChoice_2] 
-    }
+    // let adventure_packs = charDB.adventuring_packs[packChoice - 1];
 
-    packChoice = await rl.ask(
-      chalk.blue('\nPlease choose your adventuring pack\n'),
-      charDB.adventuring_packs
-    );
-
-    let adventure_packs = charDB.adventuring_packs[packChoice - 1];
-
-    let equipment = {
-      armor,
-      weapons,
-      adventure_packs
-    }
+    let equipment = await charOptions.equipment();
 
     // attach name, race, skills
     let newChar = {...charDB.pre_made_Characters[charClass.toLowerCase()], name, race, user: user.username, proficient_skills: { skill_1, skill_2 }, deity, equipment, alignment};
