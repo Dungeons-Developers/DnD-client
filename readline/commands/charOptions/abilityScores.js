@@ -6,7 +6,8 @@ const chalk = require('chalk');
 
 const invalid = require('./invalid.js');
 
-
+// prompts the user to choose between default scores or rolling random scores
+// calls the assign function with the correct array of scores
 async function abilityScores() {
   return new Promise( async (resolve, reject) => {
 
@@ -15,12 +16,33 @@ async function abilityScores() {
 
     let scoresArr = [roll4d6(), roll4d6(), roll4d6(), roll4d6(), roll4d6(), roll4d6()];
 
-    let ability_scores = await assign(defaultScores);
+    // disclaimer about how randomly generated scores are created
+    let generateRandomScoresStr = chalk.yellow('\nEach randomly generated score is created by "rolling" 4 d6, and adding the sum of the highest 3 rolls\n');
+
+    let whichScores = await rl.ask(
+      chalk.blue('\nWould you like to use the default scores (15, 14, 13, 12, 10, 8)\nOr generate 6 random scores?\n') + generateRandomScoresStr,
+      ['Default','Generate Random']
+    );
+
+    // input validation
+    while(whichScores !== '1' && whichScores !== '2') {
+      whichScores = rl.ask(chalk.red('That is not a valid option. Please try again.\n') + '- ');
+    }
+
+    let ability_scores;
+
+    if (whichScores === '1') {
+      ability_scores = await assign(defaultScores);
+    } else {
+      ability_scores = await assign(scoresArr);
+    }
+
 
     resolve(ability_scores);
   })
 }
 
+// prompts the user to assign select an attribute and give it a score
 async function assign(scores) {
   return new Promise( async (resolve, reject) => {
     let attrArr = ['STR', 'DEX', 'CON', 'INT', 'WIS', 'CHA'];
