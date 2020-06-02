@@ -45,12 +45,7 @@ async function createCharacter(user) {
 
     let charClass = charDB.classes[input - 1];
 
-    let alignmentChoice = await rl.ask(
-      chalk.hex('#4298eb')('\nWHat is your characters alignment?\n'),
-      charDB.alignment
-    );
-
-    let alignment = charDB.alignment[alignmentChoice - 1];
+    let alignment = await charOptions.alignment();
 
     let { skill_1, skill_2 } = await charOptions.skills();
 
