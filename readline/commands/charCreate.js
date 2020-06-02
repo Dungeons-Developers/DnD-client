@@ -28,7 +28,7 @@ async function createCharacter(user) {
       ),
     );
   
-    let name = await rl.ask(chalk.hex('#4298eb')('What is your characters name? '));
+    let name = await charOptions.name();
   
     let race = await charOptions.race();
   
