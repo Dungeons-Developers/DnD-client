@@ -25,6 +25,7 @@
     "chalk": "^4.0.0",
     "gradient-string": "^1.2.0",
     "jest": "^26.0.1",
+    "mock-stdin": "^1.0.0",
     "jsdoc": "^3.6.4",
     "superagent": "^5.2.2"
   }
