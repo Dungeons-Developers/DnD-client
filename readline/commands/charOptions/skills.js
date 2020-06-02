@@ -38,7 +38,7 @@ async function skills() {
 async function skillOne() {
   return new Promise( async (resolve, reject) => {
     let choice_1 = await rl.ask(
-      chalk.blue('\nPlease choose a skill (1/2)\n'),
+      chalk.hex('#4298eb')('\nPlease choose a skill (1/2)\n'),
       charDB.skills
     );
 
@@ -50,7 +50,7 @@ async function skillOne() {
 async function skillTwo() {
   return new Promise( async (resolve, reject) => {
     let choice_2 = await rl.ask(
-      chalk.blue('\nPlease choose another skill (2/2)\n') + '- '
+      chalk.hex('#4298eb')('\nPlease choose another skill (2/2)\n') + '- '
     );
 
     resolve(choice_2);

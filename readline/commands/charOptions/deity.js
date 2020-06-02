@@ -9,7 +9,7 @@ const invalid = require('./invalid.js');
 async function deity() {
   return new Promise( async (resolve, reject) => {
     let deityChoice = await rl.ask(
-      chalk.blue('\nWhich Deity will your character worship?\n'),
+      chalk.hex('#4298eb')('\nWhich Deity will your character worship?\n'),
       charDB.deity
     );
 

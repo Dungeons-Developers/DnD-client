@@ -4,6 +4,8 @@ const readline = require('readline');
 
 const chalk = require('chalk');
 
+const gradient = require('gradient-string');
+
 const rl = readline.createInterface({
   input: process.stdin,
   output: process.stdout,
@@ -43,7 +45,7 @@ rl.ask = (prompt, options = null) => {
 
 // adds closure of current running thread
 rl.on('close', () => {
-  console.log(chalk.hex('#4298eb')('Thank you for using D&D Companion!'));
+  console.log(gradient.cristal('Thank you for using D&D Companion!'));
   process.exit();
 });
 
