@@ -12,12 +12,8 @@ const rl = require('../readline');
 // menu is a modular function that displays application options to the user
 const menu = require('../menu').menu;
 
-// function signup
-// prompts the user for username/password to create a new account
-// param - string - arbitrary string to interate upon
-
 /**
- * Signs up a new user and creates a user object to hold all that user's data. 
+ * Signs up a new user and creates a user object to hold all that user's data. Prompts the user for username/password to create new account. 
  * 
  * @param {*} mute - This parameter is used as a hacky workaround. We needed an iterative parameter to mute the character display as the user inputs their password. The way the function is structured, we called the function recursively and any iteration past the first would cause issues with displaying the password due to the boolean 'rl[mute]' losing its place. So this parameter gives you a new boolean for each time the function is called. 
  */

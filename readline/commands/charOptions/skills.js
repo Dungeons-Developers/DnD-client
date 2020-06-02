@@ -65,8 +65,4 @@ async function skillTwo() {
   });
 }
 
-// function invalid(choice) {
-//   return !charDB.skills[parseInt(choice) - 1];
-// }
-
 module.exports = skills;
