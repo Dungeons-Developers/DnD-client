@@ -6,5 +6,6 @@ const equipment = require('./equipment.js');
 const abilityScores = require('./abilityScores.js');
 const alignment = require('./alignment.js');
 const classSelect = require('./classSelect.js');
+const race = require('./race.js');
 
-module.exports = { skills, deity, equipment, abilityScores, alignment, classSelect };
+module.exports = { skills, deity, equipment, abilityScores, alignment, classSelect, race };
