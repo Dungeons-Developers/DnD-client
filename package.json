@@ -24,6 +24,7 @@
     "bcrypt": "^4.0.1",
     "chalk": "^4.0.0",
     "jest": "^26.0.1",
+    "mock-stdin": "^1.0.0",
     "superagent": "^5.2.2"
   }
 }

@@ -44,7 +44,7 @@ rl.ask = (prompt, options = null) => {
 // adds closure of current running thread
 rl.on('close', () => {
   console.log(chalk.hex('#4298eb')('Thank you for using D&D Companion!'));
-  process.exit();
+  // process.exit();
 });
 
 module.exports = rl;
