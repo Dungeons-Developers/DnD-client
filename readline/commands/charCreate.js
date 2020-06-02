@@ -13,6 +13,11 @@ const charDB = require('../../data/db.json');
 
 const charOptions = require('./charOptions/options.js');
 
+/**
+ * Builds a new character for the given user.
+ * 
+ * @param {*} user - logged-in user object
+ */
 async function createCharacter(user) {
 
   return new Promise(async (resolve, reject) => {

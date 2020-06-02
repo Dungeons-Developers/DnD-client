@@ -6,6 +6,9 @@ const chalk = require('chalk');
 
 const invalid = require('./invalid.js');
 
+/**
+ * Lets user choose deity to assign to newly created character object. 
+ */
 async function deity() {
   return new Promise( async (resolve, reject) => {
     let deityChoice = await rl.ask(
@@ -22,15 +25,5 @@ async function deity() {
     resolve(deity);
   });
 }
-
-// async function choice() {
-//   return new Promise( async (resolve, reject) => {
-//     let choice = await rl.ask(
-//       chalk.blue('\nWhich Deity will your character worship?\n'),
-//       charDB.deity
-//     );
-//     resolve(choice);
-//   })
-// }
 
 module.exports = deity;

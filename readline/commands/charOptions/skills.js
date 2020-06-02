@@ -6,6 +6,9 @@ const chalk = require('chalk');
 
 const invalid = require('./invalid.js');
 
+/**
+ * Adds 2 skills to a newly created character object
+ */
 async function skills() {
   return new Promise( async (resolve, reject) => {
     let choice_1 = await skillOne();
@@ -35,6 +38,9 @@ async function skills() {
   });
 }
 
+/**
+ * Adds the first skill to a newly created character object
+ */
 async function skillOne() {
   return new Promise( async (resolve, reject) => {
     let choice_1 = await rl.ask(
@@ -46,7 +52,9 @@ async function skillOne() {
   });
 }
 
-
+/**
+ * Adds the second skill to a newly created character object
+ */
 async function skillTwo() {
   return new Promise( async (resolve, reject) => {
     let choice_2 = await rl.ask(

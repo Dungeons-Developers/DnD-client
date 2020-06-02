@@ -9,6 +9,12 @@ const superagent = require('superagent');
 // the readline module allows you to prompt users and capture input
 const rl = require('../readline');
 
+/**
+ * Gets all the previously created characters for a given user.
+ * 
+ * @param {*} user - user object for the logged-in user
+ * @return {charList} - returns a formatted list of character objects
+ */
 async function charGet(user) {
   return new Promise( async (resolve, reject ) => {
     console.log(
@@ -30,7 +36,6 @@ async function charGet(user) {
               `${index+1}. ${characters.name} - ${characters.race} ${characters.class} \n`,
             ),
           );
-      
         });
 
         let charSelect = await rl.ask(chalk.hex('#4298eb')('Select a character to see more details or type "M" to go back to the main menu.'));
@@ -51,12 +56,7 @@ async function charGet(user) {
         let selection = charList[charSelect-1];
         console.log('Your Selected Character:');
         printChar(selection);
-       
-          
-        // Object.entries(charList[charSelect-1]).forEach(pair => {
-
-        // });
-
+  
         resolve(selection);
         return;
 
@@ -67,13 +67,16 @@ async function charGet(user) {
     } catch(e){
       console.log(e);
     }
-    console.log('END OF THE GET FUNCTION');
-    // resolve();
   })
 
   
 };
 
+/**
+ * Outputs the selected character object in a nicely formatted way.
+ * 
+ * @param {*} selection - this param is the selected character
+ */
 function printChar(selection) {
    //TODO: change console log colors
    console.log(`Name - ${selection.name}`);
@@ -85,6 +88,5 @@ function printChar(selection) {
    console.log(`Equipment - \n\tArmor: ${selection.equipment.armor}\n\tAdventure Pack: ${selection.equipment.adventure_packs}\n\tWeapons -\n\t\t 1: ${selection.equipment.weapons.choice_1}\n\t\t 2: ${selection.equipment.weapons.choice_2}`);
    console.log(`Ability Scores - \n\tSTR: ${selection.ability_scores.str} | DEX: ${selection.ability_scores.dex} | CON: ${selection.ability_scores.con} | INT: ${selection.ability_scores.int} | WIS: ${selection.ability_scores.wis} | CHA: ${selection.ability_scores.cha}`);
 }
-
 
 module.exports = charGet;

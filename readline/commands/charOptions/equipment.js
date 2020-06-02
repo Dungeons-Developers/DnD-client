@@ -6,6 +6,9 @@ const chalk = require('chalk');
 
 const invalid = require('./invalid.js');
 
+/**
+ * Lets user choose armor(1), weapons(2), and pack(1) for newly created character object. 
+ */
 async function equipment() {
   return new Promise( async (resolve, reject) => {
     let armorChoice = await rl.ask(

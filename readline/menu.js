@@ -13,6 +13,11 @@ let characterOptions =
 
 let charSelectOptions = '1. Delete Character \n2. Back to Main Menu \nX. Exit Application\n';
 
+/**
+ * Generates the first menu. It asks users if they want to look at their full character list OR make a new character OR close the application.
+ * 
+ * @param {*} user - user object for the logged-in user
+ */
 async function menu(user) {
   rl.question(chalk.hex('#4298eb')(characterOptions), async (input) => {
     switch (input.trim().toUpperCase()) {
@@ -36,6 +41,12 @@ async function menu(user) {
   });
 }
 
+/**
+ * Generates the second menu. It asks users if they want to delete a character OR return to the main menu OR exit the application.
+ * 
+ * @param {*} user - user object for the logged in user
+ * @param {*} character - character object for the individually selected character
+ */
 async function selectMenu(user, character){
   rl.question(chalk.hex('#4298eb')(charSelectOptions), async (input) => {
     switch(input.trim().toUpperCase()) {

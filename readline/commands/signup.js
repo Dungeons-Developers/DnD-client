@@ -9,10 +9,6 @@ const superagent = require('superagent');
 // the readline module allows you to prompt users and capture input
 const rl = require('../readline');
 
-// const Model = require('../models/model');
-// const userSchema = require('../models/users/users-schema');
-// const UserModel = new Model(userSchema);
-
 // menu is a modular function that displays application options to the user
 const menu = require('../menu').menu;
 
@@ -20,6 +16,11 @@ const menu = require('../menu').menu;
 // prompts the user for username/password to create a new account
 // param - string - arbitrary string to interate upon
 
+/**
+ * Signs up a new user and creates a user object to hold all that user's data. 
+ * 
+ * @param {*} mute - This parameter is used as a hacky workaround. We needed an iterative parameter to mute the character display as the user inputs their password. The way the function is structured, we called the function recursively and any iteration past the first would cause issues with displaying the password due to the boolean 'rl[mute]' losing its place. So this parameter gives you a new boolean for each time the function is called. 
+ */
 async function signup(mute = '1') {
   console.log(chalk.hex('#4298eb')('\nPlease sign up.\n'));
 

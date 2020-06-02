@@ -6,8 +6,10 @@ const chalk = require('chalk');
 
 const invalid = require('./invalid.js');
 
-// prompts the user to choose between default scores or rolling random scores
-// calls the assign function with the correct array of scores
+/**
+ * Prompts the user to choose between the default ability scores or rolling random scores using regular D&D rules.
+ * Also calls the assign function with the correct array of scores.
+ */
 async function abilityScores() {
   return new Promise( async (resolve, reject) => {
 
@@ -42,7 +44,11 @@ async function abilityScores() {
   })
 }
 
-// prompts the user to assign select an attribute and give it a score
+/**
+ * Ties ability score values to the newly created character object.
+ * 
+ * @param {*} scores - These are the aggregate scores determined through a series of prompts given to the user.
+ */
 async function assign(scores) {
   return new Promise( async (resolve, reject) => {
     let attrArr = ['STR', 'DEX', 'CON', 'INT', 'WIS', 'CHA'];
@@ -103,7 +109,9 @@ async function assign(scores) {
   });
 }
 
-// rolls 4 "d6" and returns the sum of the highest 3 rolls
+/**
+ * Rolls 4 'd6' and returns the sum of the highest 3 rolls. This is the typical process used for creating ability scores in D&D.
+ */
 function roll4d6() {
   let arr = [];
   arr.push(Math.floor(Math.random() * 6) + 1);

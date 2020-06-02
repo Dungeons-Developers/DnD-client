@@ -6,6 +6,11 @@ const superagent = require('superagent');
 
 const rl = require('../readline');
 
+/**
+ * Deletes a character from a user's account + the database entirely.
+ * 
+ * @param {*} character - this is the selected character object for the logged-in user.
+ */
 async function deleteCharacter(character) {
   return new Promise( async (resolve, reject) => {
     try {
@@ -27,6 +32,5 @@ async function deleteCharacter(character) {
     }
   });
 };
-
 
 module.exports = deleteCharacter;
