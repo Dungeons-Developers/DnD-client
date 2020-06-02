@@ -11,106 +11,52 @@ const rl = require('../readline');
 
 const charDB = require('../../data/db.json');
 
+const charOptions = require('./charOptions/options.js');
+
 async function createCharacter(user) {
 
   return new Promise(async (resolve, reject) => {
 
     console.log(
       chalk.green(
-        'Please fill out the following information about your character:',
+        'Please provide the following information about your character:\n',
       ),
     );
   
-    let name = await rl.ask(chalk.blue('\nWhat is your characters name? '));
+    let name = await rl.ask(chalk.blue('What is your characters name? '));
   
     let input = await rl.ask(
       chalk.blue(
-        '\nWhat is your characters race? \n1. Dragonborn \n2. Dwarf \n3. Elf \n4. Gnome \n5. Half-Elf \n6. Half-Orc \n7. Halfling \n8. Human \n9. Tiefling \n',
+        '\nWhat is your characters race?\n \n1. Dragonborn \n2. Dwarf \n3. Elf \n4. Gnome \n5. Half-Elf \n6. Half-Orc \n7. Halfling \n8. Human \n9. Tiefling \n\n- ',
       ),
     );
   
-    let race;
-    switch (input) {
-      case '1':
-        race = 'Dragonborn';
-        break;
-      case '2':
-        race = 'Dwarf';
-        break;
-      case '3':
-        race = 'Elf';
-        break;
-      case '4':
-        race = 'Gnome';
-        break;
-      case '5':
-        race = 'Half-Elf';
-        break;
-      case '6':
-        race = 'Half-Orc';
-        break;
-      case '7':
-        race = 'Halfling';
-        break;
-      case '8':
-        race = 'Human';
-        break;
-      case '9':
-        race = 'Tiefling';
-        break;
-      default:
-        break;
-    }
+    let race = charDB.races[input - 1].name;
   
     input = await rl.ask(
-      chalk.blue(
-        '\nWhat is your characters class? \n1. Barbarian \n2. Bard \n3. Cleric \n4. Druid \n5. Fighter \n6. Monk \n7. Paladin \n8. Ranger \n9. Rogue \n10. Sorcerer \n11. Warlock \n12. Wizard \n',
-      ),
+      chalk.blue('\nWhat is your characters class?\n'),
+      charDB.classes
     );
-    let charClass;
-    switch (input) {
-      case '1':
-        charClass = 'Barbarian';
-        break;
-      case '2':
-        charClass = 'Bard';
-        break;
-      case '3':
-        charClass = 'Cleric';
-        break;
-      case '4':
-        charClass = 'Druid';
-        break;
-      case '5':
-        charClass = 'Fighter';
-        break;
-      case '6':
-        charClass = 'Monk';
-        break;
-      case '7':
-        charClass = 'Paladin';
-        break;
-      case '8':
-        charClass = 'Ranger';
-        break;
-      case '9':
-        charClass = 'Rogue';
-        break;
-      case '10':
-        charClass = 'Sorcerer';
-        break;
-      case '11':
-        charClass = 'Warlock';
-        break;
-      case '12':
-        charClass = 'Wizard';
-        break;
-      default:
-        break;
-    }
-  
+
+    let charClass = charDB.classes[input - 1];
+
+    let alignmentChoice = await rl.ask(
+      chalk.blue('\nWHat is your characters alignment?\n'),
+      charDB.alignment
+    );
+
+    let alignment = charDB.alignment[alignmentChoice - 1];
+
+    let { skill_1, skill_2 } = await charOptions.skills();
+
+    let deity = await charOptions.deity();
+
+    let equipment = await charOptions.equipment();
+
+    let ability_scores = await charOptions.abilityScores();
+
     // attach name, race, skills
-    let newChar = {...charDB.pre_made_Characters[charClass.toLowerCase()], name, race, user: user.username};
+    let newChar = {...charDB.pre_made_Characters[charClass.toLowerCase()], name, race, user: user.username, proficient_skills: { skill_1, skill_2 }, deity, equipment, alignment, ability_scores};
   
     let response = await superagent
       .post('https://cf-dnd-character-creator.herokuapp.com/v1/api/character')
