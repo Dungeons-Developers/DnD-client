@@ -23,6 +23,7 @@
   "dependencies": {
     "bcrypt": "^4.0.1",
     "chalk": "^4.0.0",
+    "gradient-string": "^1.2.0",
     "jest": "^26.0.1",
     "superagent": "^5.2.2"
   }
