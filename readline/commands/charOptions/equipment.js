@@ -12,7 +12,7 @@ const invalid = require('./invalid.js');
 async function equipment() {
   return new Promise( async (resolve, reject) => {
     let armorChoice = await rl.ask(
-      chalk.blue('\nNext we will choose your characters equipment...\n\nPlease choose your armor.\n'),
+      chalk.hex('#4298eb')('\nNext we will choose your characters equipment...\n\nPlease choose your armor.\n'),
       charDB.armor
     );
 
@@ -23,7 +23,7 @@ async function equipment() {
     let armor = charDB.armor[armorChoice - 1];
 
     let weaponChoice_1 = await rl.ask(
-      chalk.blue('\nPlease choose a weapon (1/2)\n'),
+      chalk.hex('#4298eb')('\nPlease choose a weapon (1/2)\n'),
       charDB.weapons
     );
 
@@ -32,7 +32,7 @@ async function equipment() {
     }
 
     let weaponChoice_2 = await rl.ask(
-      chalk.blue('\nPlease choose another weapon (2/2)\n- ')
+      chalk.hex('#4298eb')('\nPlease choose another weapon (2/2)\n- ')
     );
 
     while(invalid(weaponChoice_2, charDB.weapons)) {
@@ -45,7 +45,7 @@ async function equipment() {
     }
 
     let packChoice = await rl.ask(
-      chalk.blue('\nPlease choose your adventuring pack\n'),
+      chalk.hex('#4298eb')('\nPlease choose your adventuring pack\n'),
       charDB.adventuring_packs
     );
 

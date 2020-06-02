@@ -13,7 +13,7 @@ const invalid = require('./invalid.js');
 async function abilityScores() {
   return new Promise( async (resolve, reject) => {
 
-    console.log(chalk.blue('\nWe will now assign attribute scores...'));
+    console.log(chalk.hex('#4298eb')('\nWe will now assign attribute scores...'));
     let defaultScores = [15, 14, 13, 12, 10, 8];
 
     let scoresArr = [roll4d6(), roll4d6(), roll4d6(), roll4d6(), roll4d6(), roll4d6()];
@@ -22,7 +22,7 @@ async function abilityScores() {
     let generateRandomScoresStr = chalk.yellow('\nEach randomly generated score is created by "rolling" 4 d6, and adding the sum of the highest 3 rolls\n');
 
     let whichScores = await rl.ask(
-      chalk.blue('\nWould you like to use the default scores (15, 14, 13, 12, 10, 8)\nOr generate 6 random scores?\n') + generateRandomScoresStr,
+      chalk.hex('#4298eb')('\nWould you like to use the default scores (15, 14, 13, 12, 10, 8)\nOr generate 6 random scores?\n') + generateRandomScoresStr,
       ['Default','Generate Random']
     );
 
@@ -69,7 +69,7 @@ async function assign(scores) {
 
     while(attrArr[0]) {
       let attrChoice = await rl.ask(
-        chalk.blue('\nWhich attribute would you like to assign?\n'),
+        chalk.hex('#4298eb')('\nWhich attribute would you like to assign?\n'),
         attrArr
       );
 
@@ -80,7 +80,7 @@ async function assign(scores) {
       let attr = attrArr[attrChoice - 1];
 
       let scoreChoice = await rl.ask(
-        chalk.blue('\nPlease select from the following scores:\n'),
+        chalk.hex('#4298eb')('\nPlease select from the following scores:\n'),
         scores
       );
 
