@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: abilityscores.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: abilityscores.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>'use strict';
+
+const rl = require('../../readline');
+const charDB = require('../../../data/db.json');
+const chalk = require('chalk');
+
+const invalid = require('./invalid.js');
+
+/**
+ * Prompts the user to choose between the default ability scores or rolling random scores using regular D&amp;D rules.
+ * Also calls the assign function with the correct array of scores.
+ */
+async function abilityScores() {
+  return new Promise( async (resolve, reject) => {
+
+    console.log(chalk.hex('#4298eb')('\nWe will now assign attribute scores...'));
+    let defaultScores = [15, 14, 13, 12, 10, 8];
+
+    let scoresArr = [roll4d6(), roll4d6(), roll4d6(), roll4d6(), roll4d6(), roll4d6()];
+
+    // disclaimer about how randomly generated scores are created
+    let generateRandomScoresStr = chalk.yellow('\nEach randomly generated score is created by "rolling" 4 d6, and adding the sum of the highest 3 rolls\n');
+
+    let whichScores = await rl.ask(
+      chalk.hex('#4298eb')('\nWould you like to use the default scores (15, 14, 13, 12, 10, 8)\nOr generate 6 random scores?\n') + generateRandomScoresStr,
+      ['Default','Generate Random']
+    );
+
+    // input validation
+    while(whichScores !== '1' &amp;&amp; whichScores !== '2') {
+      whichScores = rl.ask(chalk.red('That is not a valid option. Please try again.\n') + '- ');
+    }
+
+    let ability_scores;
+
+    if (whichScores === '1') {
+      ability_scores = await assign(defaultScores);
+    } else {
+      ability_scores = await assign(scoresArr);
+    }
+
+
+    resolve(ability_scores);
+  })
+}
+
+/**
+ * Ties ability score values to the newly created character object.
+ * 
+ * @param {*} scores - These are the aggregate scores determined through a series of prompts given to the user.
+ */
+async function assign(scores) {
+  return new Promise( async (resolve, reject) => {
+    let attrArr = ['STR', 'DEX', 'CON', 'INT', 'WIS', 'CHA'];
+
+    let ability_scores = {
+      str: '-',
+      dex: '-',
+      con: '-',
+      int: '-',
+      wis: '-',
+      cha: '-',
+    };
+
+    console.log(`Here are your scores:`);
+    scores.forEach(score => {
+      console.log(score);
+    });
+
+    while(attrArr[0]) {
+      let attrChoice = await rl.ask(
+        chalk.hex('#4298eb')('\nWhich attribute would you like to assign?\n'),
+        attrArr
+      );
+
+      while(invalid(attrChoice, attrArr)) {
+        attrChoice = await rl.ask(chalk.red('\nThat attribute does not exist. Please try again.\n') + '- ');
+      }
+
+      let attr = attrArr[attrChoice - 1];
+
+      let scoreChoice = await rl.ask(
+        chalk.hex('#4298eb')('\nPlease select from the following scores:\n'),
+        scores
+      );
+
+      while(invalid(scoreChoice, scores)) {
+        scoreChoice = await rl.ask(chalk.red('\nInvalid select. Please try again.\n') + '- ');
+      }
+
+      let score = scores[scoreChoice - 1];
+
+      ability_scores[attr.toLowerCase()] = score;
+
+      attrArr.splice(attrChoice - 1, 1);
+      scores.splice(scoreChoice - 1, 1);
+
+      let scoreStr = '';
+      console.log('\nCurrent scores:\n');
+      let scoresToPrint = Object.entries(ability_scores);
+      scoresToPrint.forEach((arr, index) => {
+        scoreStr += `${arr[0].toUpperCase()}: ${arr[1]}`;
+        if (index !== scoresToPrint.length - 1) scoreStr += ' | ';
+      });
+      console.log(scoreStr);
+    }
+
+    resolve(ability_scores);
+  });
+}
+
+/**
+ * Rolls 4 'd6' and returns the sum of the highest 3 rolls. This is the typical process used for creating ability scores in D&amp;D.
+ */
+function roll4d6() {
+  let arr = [];
+  arr.push(Math.floor(Math.random() * 6) + 1);
+  arr.push(Math.floor(Math.random() * 6) + 1);
+  arr.push(Math.floor(Math.random() * 6) + 1);
+  arr.push(Math.floor(Math.random() * 6) + 1);
+
+  arr.sort((a, b) => {
+    return b - a;
+  });
+
+  return arr[0] + arr[1] + arr[2];
+}
+
+module.exports = abilityScores;</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#abilityScores">abilityScores</a></li><li><a href="global.html#assign">assign</a></li><li><a href="global.html#roll4d6">roll4d6</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.3</a> on Mon Jun 01 2020 20:51:38 GMT-0700 (Pacific Daylight Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
