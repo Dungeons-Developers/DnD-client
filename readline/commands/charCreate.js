@@ -38,12 +38,14 @@ async function createCharacter(user) {
   
     let race = charDB.races[input - 1].name;
   
-    input = await rl.ask(
-      chalk.hex('#4298eb')('\nWhat is your characters class?\n'),
-      charDB.classes
-    );
+    // input = await rl.ask(
+    //   chalk.hex('#4298eb')('\nWhat is your characters class?\n'),
+    //   charDB.classes
+    // );
 
-    let charClass = charDB.classes[input - 1];
+    // let charClass = charDB.classes[input - 1];
+
+    let charClass = await charOptions.classSelect();
 
     let alignment = await charOptions.alignment();
 
