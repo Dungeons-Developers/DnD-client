@@ -39,7 +39,6 @@ async function abilityScores() {
       ability_scores = await assign(scoresArr);
     }
 
-
     resolve(ability_scores);
   })
 }
@@ -47,12 +46,18 @@ async function abilityScores() {
 /**
  * Ties ability score values to the newly created character object.
  * 
- * @param {*} scores - These are the aggregate scores determined through a series of prompts given to the user.
+ * @param {Array} scores - This is an array of default integers or integers generated with the roll4d6 function
  */
 async function assign(scores) {
   return new Promise( async (resolve, reject) => {
+    let attrPrompt = '\nWhich attribute would you like to assign?\n';
+    let attrErrorStr = '\nThat attribute does not exist. Please try again.\n';
+    let scorePrompt = '\nPlease select from the following scores:\n';
+    let scoreErrorStr = '\nInvalid selection. Please try again.\n';
+
     let attrArr = ['STR', 'DEX', 'CON', 'INT', 'WIS', 'CHA'];
 
+    // scores object for modifying and priting as well eventual shipment to charCreate function
     let ability_scores = {
       str: '-',
       dex: '-',
@@ -68,30 +73,20 @@ async function assign(scores) {
     });
 
     while(attrArr[0]) {
-      let attrChoice = await rl.ask(
-        chalk.hex('#4298eb')('\nWhich attribute would you like to assign?\n'),
-        attrArr
-      );
 
-      while(invalid(attrChoice, attrArr)) {
-        attrChoice = await rl.ask(chalk.red('\nThat attribute does not exist. Please try again.\n') + '- ');
-      }
+      // prompt the user to choose which attribute they want to assign
+      let attrChoice =  await getChoice(attrArr, attrPrompt, attrErrorStr);
 
       let attr = attrArr[attrChoice - 1];
 
-      let scoreChoice = await rl.ask(
-        chalk.hex('#4298eb')('\nPlease select from the following scores:\n'),
-        scores
-      );
-
-      while(invalid(scoreChoice, scores)) {
-        scoreChoice = await rl.ask(chalk.red('\nInvalid select. Please try again.\n') + '- ');
-      }
+      // prompt the user to choose which score to give the previously chosen attribute
+      let scoreChoice = await getChoice(scores, scorePrompt, scoreErrorStr);
 
       let score = scores[scoreChoice - 1];
 
       ability_scores[attr.toLowerCase()] = score;
 
+      // removes the score/attributet that was just used from the corresponding arrays
       attrArr.splice(attrChoice - 1, 1);
       scores.splice(scoreChoice - 1, 1);
 
@@ -106,6 +101,29 @@ async function assign(scores) {
     }
 
     resolve(ability_scores);
+  });
+}
+
+/**
+ * Prompts the user with the given string to make a choice given an array of options
+ * Reprompts with the errStr if user inputs an invalid selection
+ * 
+ * @param {Array} array - This is an array of options given to the user to select from
+ * @param {String} prompt - This is the string that the user will be prompted with when asked to make a choice
+ * @param {String} errStr - This is the string the user will be prompted with when they enter an invalid selection
+ */
+async function getChoice(array, prompt, errStr) {
+  return new Promise( async ( resolve, reject ) => {
+    let choice = await rl.ask(
+      chalk.hex('#4298eb')(prompt),
+      array
+    );
+
+    while(invalid(choice, array)) {
+      choice = await rl.ask(chalk.red(errStr) + '- ');
+    }
+
+    resolve(choice);
   });
 }
 
