@@ -11,6 +11,9 @@ const commands = require('./commands');
 console.log(gradient.cristal('\nWelcome to D&D Companion!\n'));
 
 
+/**
+ * This function starts our application in the terminal
+ */
 function start() {
     rl.question(
       chalk.hex('#4298eb')('1. Log in\n2. Sign up\n\nX. Exit\n'),
