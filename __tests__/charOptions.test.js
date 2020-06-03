@@ -56,7 +56,6 @@ describe('name', () => {
 
     let response = await charOptions.name();
     expect(response).toBe('Billy Bob');
-    rl.close();
   })
 });
 
