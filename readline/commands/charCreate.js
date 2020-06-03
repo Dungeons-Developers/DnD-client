@@ -28,29 +28,13 @@ async function createCharacter(user) {
       ),
     );
   
-    let name = await rl.ask(chalk.hex('#4298eb')('What is your characters name? '));
+    let name = await charOptions.name();
   
-    let input = await rl.ask(
-      chalk.green(
-        '\nWhat is your characters race?\n \n1. Dragonborn \n2. Dwarf \n3. Elf \n4. Gnome \n5. Half-Elf \n6. Half-Orc \n7. Halfling \n8. Human \n9. Tiefling \n\n- ',
-      ),
-    );
+    let race = await charOptions.race();
   
-    let race = charDB.races[input - 1].name;
-  
-    input = await rl.ask(
-      chalk.hex('#4298eb')('\nWhat is your characters class?\n'),
-      charDB.classes
-    );
+    let charClass = await charOptions.classSelect();
 
-    let charClass = charDB.classes[input - 1];
-
-    let alignmentChoice = await rl.ask(
-      chalk.hex('#4298eb')('\nWHat is your characters alignment?\n'),
-      charDB.alignment
-    );
-
-    let alignment = charDB.alignment[alignmentChoice - 1];
+    let alignment = await charOptions.alignment();
 
     let { skill_1, skill_2 } = await charOptions.skills();
 

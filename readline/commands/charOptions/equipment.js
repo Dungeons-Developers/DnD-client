@@ -11,6 +11,19 @@ const invalid = require('./invalid.js');
  */
 async function equipment() {
   return new Promise( async (resolve, reject) => {
+
+    let armor = await getArmor();
+
+    let weapons = await getWeapons();
+
+    let adventure_packs = await getPack();
+
+    resolve({ armor, weapons, adventure_packs });
+  });
+}
+
+async function getArmor() {
+  return new Promise( async ( resolve, reject ) => {
     let armorChoice = await rl.ask(
       chalk.hex('#4298eb')('\nNext we will choose your characters equipment...\n\nPlease choose your armor.\n'),
       charDB.armor
@@ -22,6 +35,28 @@ async function equipment() {
 
     let armor = charDB.armor[armorChoice - 1];
 
+    resolve(armor);
+  });
+}
+
+async function getWeapons() {
+  return new Promise( async ( resolve, reject ) => {
+
+    let weaponChoice_1 = await getWeaponOne();
+
+    let weaponChoice_2 = await getWeaponTwo();
+
+    let weapons = { 
+      choice_1: charDB.weapons[weaponChoice_1 - 1], 
+      choice_2: charDB.weapons[weaponChoice_2 - 1] 
+    }
+
+    resolve(weapons);
+  });
+}
+
+async function getWeaponOne() {
+  return new Promise( async ( resolve, reject ) => {
     let weaponChoice_1 = await rl.ask(
       chalk.hex('#4298eb')('\nPlease choose a weapon (1/2)\n'),
       charDB.weapons
@@ -31,6 +66,12 @@ async function equipment() {
       weaponChoice_1 = await rl.ask(chalk.red('\nThat weapon is not listed. Please try again.\n') + '- ')
     }
 
+    resolve(weaponChoice_1);
+  });
+}
+
+async function getWeaponTwo() {
+  return new Promise( async ( resolve, reject ) => {
     let weaponChoice_2 = await rl.ask(
       chalk.hex('#4298eb')('\nPlease choose another weapon (2/2)\n- ')
     );
@@ -39,11 +80,12 @@ async function equipment() {
       weaponChoice_2 = await rl.ask(chalk.red('\nThat weapon is not listed. Please try again.\n') + '- ')
     }
 
-    let weapons = { 
-      choice_1: charDB.weapons[weaponChoice_1], 
-      choice_2: charDB.weapons[weaponChoice_2] 
-    }
+    resolve(weaponChoice_2);
+  })
+}
 
+async function getPack() {
+  return new Promise( async ( resolve, reject ) => {
     let packChoice = await rl.ask(
       chalk.hex('#4298eb')('\nPlease choose your adventuring pack\n'),
       charDB.adventuring_packs
@@ -55,8 +97,8 @@ async function equipment() {
 
     let adventure_packs = charDB.adventuring_packs[packChoice - 1];
 
-    resolve({ armor, weapons, adventure_packs });
-  });
+    resolve(adventure_packs);
+  })
 }
 
 module.exports = equipment;
