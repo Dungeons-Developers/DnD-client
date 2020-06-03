@@ -144,4 +144,4 @@ function roll4d6() {
   return arr[0] + arr[1] + arr[2];
 }
 
-module.exports = abilityScores;
+module.exports = { abilityScores, roll4d6, getChoice, assign };
