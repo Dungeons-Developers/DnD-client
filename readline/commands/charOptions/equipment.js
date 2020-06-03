@@ -101,4 +101,4 @@ async function getPack() {
   })
 }
 
-module.exports = equipment;
+module.exports = { equipment, getArmor, getWeapons, getPack };
