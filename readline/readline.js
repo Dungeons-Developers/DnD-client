@@ -39,7 +39,7 @@ rl.ask = (prompt, options = null) => {
  * @param {string} close - This is a built-in event that triggers when the application is closed.
  */
 rl.on('close', () => {
-  console.log(chalk.hex('#4298eb')('Thank you for using D&D Companion!'));
+  console.log(gradient.cristal('Thank you for using D&D Companion!'));
   // process.exit();
 });
 
