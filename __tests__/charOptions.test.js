@@ -1,6 +1,6 @@
 'use strict';
 
-jest.setTimeout(6000)
+jest.setTimeout(50000)
 
 const charOptions = require('../readline/commands/charOptions/options.js');
 const rl = require('../readline/readline.js');
