@@ -12,6 +12,8 @@ const superagent = require('superagent');
 // the readline module allows you to prompt users and capture input
 const rl = require('../readline');
 
+const invalid = require('./charOptions/invalid.js');
+
 /**
  * Gets all the previously created characters for a given user.
  * 
@@ -32,38 +34,48 @@ async function charGet(user) {
       let charList = response.body;
     
       if(charList.length){
-        charList.forEach( (characters, index) => {
+        // charList.forEach( (characters, index) => {
         
-          console.log(
-            chalk.green(
-              `${index+1}. ${characters.name} - ${characters.race} ${characters.class} \n`,
-            ),
-          );
-        });
+        //   console.log(
+        //     chalk.green(
+        //       `${index+1}. ${characters.name} - ${characters.race} ${characters.class} \n`,
+        //     ),
+        //   );
+        // });
 
-        let charSelect = await rl.ask(chalk.hex('#4298eb')('Select a character to see more details or type "M" to go back to the main menu. \n - '));
+        printAllChar(charList);
+
+        // let charSelect = await rl.ask(chalk.hex('#4298eb')('Select a character to see more details or type "M" to go back to the main menu. \n - '));
 
         
-        if (charSelect.toUpperCase() === 'M') {
-          console.log('\nReturning to main menu...');
+        // if (charSelect.toUpperCase() === 'M') {
+        //   console.log('\nReturning to main menu...');
+        //   resolve();
+        //   return;
+        // }
+
+        // while (invalid(charSelect, list)) {
+        //   console.log('\nThat character does not exist! Returning to main menu...');
+        //   charSelect = await rl.ask(chalk.red('Invalid selection. Please try again.'));
+        // }
+
+        // let selection = charList[charSelect-1];
+
+        let selection = await getCharSelection(charList);
+
+        if (selection === 'M') {
           resolve();
           return;
-        }
-
-        if (charSelect > charList.length) {
-          console.log('\nThat character does not exist! Returning to main menu...');
-          resolve();
+        } else {
+          console.log(gradient.cristal('\nYour Selected Character:'));
+          printChar(selection);
+          resolve(selection);
           return;
         }
-
-        let selection = charList[charSelect-1];
-        console.log(gradient.cristal('\nYour Selected Character:'));
-        printChar(selection);
-        resolve(selection);
-        return;
 
       } else {
         console.log('Your party is empty. Please try making a character!');
+        resolve();
       }
   
     } catch(e){
@@ -71,6 +83,37 @@ async function charGet(user) {
     }
   });
 };
+
+function printAllChar(list) {
+  list.forEach( (characters, index) => {
+        
+    console.log(
+      chalk.green(
+        `${index+1}. ${characters.name} - ${characters.race} ${characters.class} \n`,
+      ),
+    );
+  });
+}
+
+async function getCharSelection(list) {
+  return new Promise( async ( resolve, reject ) => {
+    let charSelect = await rl.ask(chalk.hex('#4298eb')('Select a character to see more details or type "M" to go back to the main menu.\n') + '- ');
+
+        
+    if (charSelect.toUpperCase() === 'M') {
+      resolve('M');
+      return;
+    }
+
+    while (invalid(charSelect, list)) {
+      console.log('\nThat character does not exist! Returning to main menu...');
+      charSelect = await rl.ask(chalk.red('Invalid selection. Please try again.'));
+    }
+
+    resolve(list[charSelect - 1]);
+    return;
+  });
+}
 
 /**
  * Outputs the selected character object in a nicely formatted way.
