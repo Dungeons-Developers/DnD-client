@@ -51,7 +51,7 @@ describe('name', () => {
   it('makes a name', async () => {
     process.nextTick(() => {
       rl.write('Billy Bob');
-      rl.write('', { name: 'return' });
+      rl.write(null, { name: 'return' });
     });
 
     let response = await charOptions.name();
