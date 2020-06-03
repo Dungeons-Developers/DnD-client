@@ -86,11 +86,11 @@ function printChar(selection) {
    console.log(gradient.cristal('Class -'), selection.class);
 
   if (regexEvil.test(selection.alignment)) { 
-    console.log(gradient.cristal('Alignment -'), chalk`{redBright ${selection.alignment}}`);
+    console.log(gradient.cristal('Alignment -'), chalk`{hex('#FF0000') ${selection.alignment}}`);
   } else if (regexGood.test(selection.alignment)) {
-    console.log(gradient.cristal('Alignment -'), chalk`{greenBright ${selection.alignment}}`);
+    console.log(gradient.cristal('Alignment -'), chalk`{hex('#008000') ${selection.alignment}}`);
   } else {
-    console.log(gradient.cristal('Alignment -'), chalk`{blueBright ${selection.alignment}}`);
+    console.log(gradient.cristal('Alignment -'), chalk`{hex('#4298eb') ${selection.alignment}}`);
   }
 
   console.log(gradient.cristal('Deity -'), selection.deity);
