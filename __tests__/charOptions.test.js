@@ -1,5 +1,7 @@
 'use strict';
 
+jest.setTimeout(6000)
+
 const charOptions = require('../readline/commands/charOptions/options.js');
 const rl = require('../readline/readline.js');
 const abilityScoreFunc = require('../readline/commands/charOptions/abilityScores.js');
