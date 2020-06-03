@@ -5,9 +5,10 @@ jest.setTimeout(50000)
 const charOptions = require('../readline/commands/charOptions/options.js');
 const rl = require('../readline/readline.js');
 const abilityScoreFunc = require('../readline/commands/charOptions/abilityScores.js');
+const equipmentFunc = require('../readline/commands/charOptions/equipment.js');
 
-xdescribe('deity', () => {
-  it('does something', async () => {
+describe('deity', () => {
+  it('responds properly given valid input', async () => {
     process.nextTick(() => {
       rl.write('1');
       rl.write(null, { name: 'return' });
@@ -16,35 +17,144 @@ xdescribe('deity', () => {
     let response = await charOptions.deity();
     expect(response).toEqual('Auril, Goddes of Winter');
   });
+
+  it('reprompts given invalid input', async () => {
+    setTimeout(() => {
+      rl.write('goose');
+      rl.write(null, { name: 'return' });
+
+      setTimeout(() => {
+        rl.write('1');
+        rl.write(null, { name: 'return' });
+      }, 50);
+    }, 50);
+
+    let response = await charOptions.deity();
+    expect(response).toEqual('Auril, Goddes of Winter');
+  });
 });
 
-xdescribe('equipment', () => {
-  it('does something', async () => {
+describe('equipment', () => {
+  it('getArmor responds properly given valid input', async () => {
     setTimeout(() => {
-      rl.write('2');
+      rl.write('1');
+      rl.write(null, { name: 'return' });
+    }, 50);
+
+    let response = await equipmentFunc.getArmor();
+    expect(response).toBeDefined();
+    expect(response).toBe('Padded');
+  });
+
+  it('getArmor reprompts given invalid input', async () => {
+    setTimeout(() => {
+      rl.write('garble');
+      rl.write(null, { name: 'return' });
+
+      setTimeout(() => {
+        rl.write('1');
+        rl.write(null, { name: 'return' });
+      }, 50);
+    }, 50);
+
+    let response = await equipmentFunc.getArmor();
+    expect(response).toBeDefined();
+    expect(response).toBe('Padded');
+
+  });
+
+  it('getWeapons responds properly given valid input', async () => {
+    setTimeout(() => {
+      rl.write('1');
       rl.write(null, { name: 'return' });
 
       setTimeout(() => {
         rl.write('2');
         rl.write(null, { name: 'return' });
+      }, 50);
+    }, 50);
+
+    let response = await equipmentFunc.getWeapons();
+    expect(response).toBeDefined();
+    expect(response.choice_1).toBe('Club');
+    expect(response.choice_2).toBe('Dagger');
+
+  });
+
+  it('getWeapons reprompts given invalid input on first entry', async () => {
+    setTimeout(() => {
+      rl.write('try again');
+      rl.write(null, { name: 'return' });
+
+      setTimeout(() => {
+        rl.write('1');
+        rl.write(null, { name: 'return' });
 
         setTimeout(() => {
           rl.write('2');
           rl.write(null, { name: 'return' });
+        }, 50);
+      }, 50);
+    }, 50);
 
-          setTimeout(() => {
-            rl.write('2');
-            rl.write(null, { name: 'return' });
-          }, 500);
-        }, 500);
-      }, 500);
-    }, 500);
+    let response = await equipmentFunc.getWeapons();
+    expect(response).toBeDefined();
+    expect(response.choice_1).toBe('Club');
+    expect(response.choice_2).toBe('Dagger');
 
-    let response = await charOptions.equipment();
-    expect(response.weapons).toBeDefined();
-    expect(response.armor).toBeDefined();
-    expect(response.adventure_packs).toBeDefined();
   });
+
+  it('getWeapons reprompts given invalid input on second entry', async () => {
+    setTimeout(() => {
+      rl.write('1');
+      rl.write(null, { name: 'return' });
+
+      setTimeout(() => {
+        rl.write('try again');
+        rl.write(null, { name: 'return' });
+
+        setTimeout(() => {
+          rl.write('2');
+          rl.write(null, { name: 'return' });
+        }, 50);
+      }, 50);
+    }, 50);
+
+    let response = await equipmentFunc.getWeapons();
+    expect(response).toBeDefined();
+    expect(response.choice_1).toBe('Club');
+    expect(response.choice_2).toBe('Dagger');
+
+  });
+
+  it('getPack responds properly given proper input', async () => {
+    setTimeout(() => {
+      rl.write('1');
+      rl.write(null, { name: 'return' });
+    }, 50);
+
+    let response = await equipmentFunc.getPack();
+    expect(response).toBeDefined();
+    expect(response).toBe('Burglars Pack');
+  });
+
+  it('getPack reprompts when given invalid input', async () => {
+    setTimeout(() => {
+      rl.write('game of thrones season 8 was garbage');
+      rl.write(null, { name: 'return' });
+
+      setTimeout(() => {
+        rl.write('1');
+        rl.write(null, { name: 'return' });
+      }, 50);
+    }, 50);
+
+    let response = await equipmentFunc.getPack();
+    expect(response).toBeDefined();
+    expect(response).toBe('Burglars Pack');
+
+  });
+
 });
 
 describe('name', () => {
@@ -59,8 +169,8 @@ describe('name', () => {
   })
 });
 
-xdescribe('race', () => {
-  it('does some work', async () => {
+describe('race', () => {
+  it('responds with the correct race given proper input', async () => {
     process.nextTick(() => {
       rl.write('1');
       rl.write(null, { name: 'return' });
@@ -68,10 +178,26 @@ xdescribe('race', () => {
 
     let response = await charOptions.race();
     expect(response).toBe('Dragonborn');
-  })
+  });
+
+  it('reprompts when given invalid input, accepts second input if valid', async () => {
+    setTimeout(() => {
+      rl.write('qwerty');
+      rl.write(null, { name: 'return' });
+
+      setTimeout(() => {
+        rl.write('2');
+        rl.write(null, { name: 'return' });
+      }, 50);
+    }, 50);
+
+    let response = await charOptions.race();
+    expect(response).toBeDefined();
+    expect(response).toBe('Dwarf');
+  });
 });
 
-xdescribe('alignment', () => {
+describe('alignment', () => {
   it('picks an alignment', async () => {
     process.nextTick(() => {
       rl.write('1');
@@ -81,9 +207,25 @@ xdescribe('alignment', () => {
     let response = await charOptions.alignment();
     expect(response).toBe('Lawful Good');
   });
+
+  it('reprompts when given invalid input, accepts second input if valid', async () => {
+    setTimeout(() => {
+      rl.write('123456789');
+      rl.write(null, { name: 'return' });
+
+      setTimeout(() => {
+        rl.write('1');
+        rl.write(null, { name: 'return' });
+      }, 50);
+    }, 50);
+    
+    let response = await charOptions.alignment();
+    expect(response).toBe('Lawful Good');
+
+  });
 });
 
-xdescribe('class', () => {
+describe('class', () => {
   it('picks a class', async () => {
     process.nextTick(() => {
       rl.write('1');
@@ -93,11 +235,26 @@ xdescribe('class', () => {
     let response = await charOptions.classSelect();
     expect(response).toBe('Barbarian');
   });
+
+  it('reprompts when given invalid input, accepts second input if valid', async () => {
+    setTimeout(() => {
+      rl.write('baaaaad');
+      rl.write(null, { name: 'return' });
+
+      setTimeout(() => {
+        rl.write('1');
+        rl.write(null, { name: 'return' });
+      }, 50);
+    }, 50);
+
+    let response = await charOptions.classSelect();
+    expect(response).toBe('Barbarian');
+  });
 })
 
   // abilityscores
   // skills
-xdescribe('ability scores', () => {
+describe('ability scores', () => {
   it('roll4d6 defined', () => {
     let scores = abilityScoreFunc.roll4d6();
     expect(scores).toBeDefined();
@@ -153,18 +310,18 @@ xdescribe('ability scores', () => {
                           setTimeout(() => {
                             rl.write('1');
                             rl.write(null, { name: 'return' });
-                          },100)
-                        },100)
-                      },100)
-                    },100)
-                  },100)
-                },100)
-              },100)
-            },100)
-          },100)
-        },100)
-      },100)
-    },100);
+                          },50)
+                        },50)
+                      },50)
+                    },50)
+                  },50)
+                },50)
+              },50)
+            },50)
+          },50)
+        },50)
+      },50)
+    },50);
 
     let whatEver = await abilityScoreFunc.assign(defaultScores);
 
@@ -179,7 +336,7 @@ xdescribe('ability scores', () => {
     expect(whatEver.cha).toBeDefined();
   });
 
-  it('get choice unhappy', async () => {
+  it('getChoice reprompts when given invalid input, accepts second input if valid', async () => {
     let defaultScores = [15, 14, 13, 12, 10, 8];
     let prompt = 'I am a string';
     let errStr = ' I am an error';
@@ -197,11 +354,95 @@ xdescribe('ability scores', () => {
     let answer = await abilityScoreFunc.getChoice(defaultScores, prompt, errStr);
 
     expect(answer).toBe('2');
-    rl.close();
   })
 });
 
-xdescribe('skills', () => {
+describe('skills', () => {
+  it('selects a skill given proper input', async () => {
+    setTimeout(() => {
+      rl.write('1');
+      rl.write(null, { name: 'return' });
 
+      setTimeout(() => {
+        rl.write('2');
+        rl.write(null, { name: 'return' });
+      }, 100);
+    }, 100);
 
+    let response = await charOptions.skills();
+
+    expect(response).toBeDefined();
+    expect(response.skill_1).toBe('Acrobatics');
+    expect(response.skill_2).toBe('Animal Handling');
+  });
+
+  it('reprompts when invalid input is given as first selection', async () => {
+    setTimeout(() => {
+      rl.write('qwerty');
+      rl.write(null, { name: 'return' });
+
+      setTimeout(() => {
+        rl.write('1');
+        rl.write(null, { name: 'return' });
+
+        setTimeout(() => {
+          rl.write('2');
+          rl.write(null, { name: 'return' });
+        }, 100);
+      }, 100);
+    }, 100);
+
+    let response = await charOptions.skills();
+
+    expect(response).toBeDefined();
+    expect(response.skill_1).toBe('Acrobatics');
+    expect(response.skill_2).toBe('Animal Handling');
+  });
+
+  it('reprompts when invalid input is given as second selection', async () => {
+    setTimeout(() => {
+      rl.write('1');
+      rl.write(null, { name: 'return' });
+
+      setTimeout(() => {
+        rl.write('qwerty');
+        rl.write(null, { name: 'return' });
+
+        setTimeout(() => {
+          rl.write('2');
+          rl.write(null, { name: 'return' });
+        }, 100);
+      }, 100);
+    }, 100);
+
+    let response = await charOptions.skills();
+
+    expect(response).toBeDefined();
+    expect(response.skill_1).toBe('Acrobatics');
+    expect(response.skill_2).toBe('Animal Handling');
+  });
+
+  it('reprompts when duplicate selection is made', async () => {
+    setTimeout(() => {
+      rl.write('1');
+      rl.write(null, { name: 'return' });
+
+      setTimeout(() => {
+        rl.write('1');
+        rl.write(null, { name: 'return' });
+
+        setTimeout(() => {
+          rl.write('2');
+          rl.write(null, { name: 'return' });
+        }, 100);
+      }, 100);
+    }, 100);
+
+    let response = await charOptions.skills();
+
+    expect(response).toBeDefined();
+    expect(response.skill_1).toBe('Acrobatics');
+    expect(response.skill_2).toBe('Animal Handling');
+    rl.close();
+  });
 });
