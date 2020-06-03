@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "Client facing application for DnD character creator tool",
   "main": "index.js",
+  "bin": {
+    "dnd-client": "./index.js"
+  },
   "scripts": {
     "test": "jest --verbose --coverage",
     "start": "node index.js",
@@ -14,7 +17,7 @@
     "url": "git+https://github.com/Dungeons-Developers/DnD-client.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "Dan Nguyen, Clayton Jones, Madison Stehle, Joel Watson & Kory Jackson",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/Dungeons-Developers/DnD-client/issues"
