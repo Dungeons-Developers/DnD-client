@@ -15,7 +15,7 @@ console.log(gradient.cristal("\nWelcome to D&D Companion!\n"));
  */
 function start() {
   rl.question(
-    chalk.hex("#4298eb")("1. Log in\n2. Sign up\n\nX. Exit\n"),
+    chalk.hex("#4298eb")("1. Log in\n2. Sign up\n\nX. Exit Application\n\n- "),
     (input) => {
       switch (input.toUpperCase()) {
         case "1":
