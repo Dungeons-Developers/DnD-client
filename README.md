@@ -25,7 +25,7 @@ Our plan for this project is to create a robust tool that allows players to crea
 
 ## Domain Model
 
-![domain model](/assets/domain-model.jpg)
+![domain model](/assets/domain-model2.jpg)
 
 ## Team Agreement
 <details>
