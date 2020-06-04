@@ -13,7 +13,9 @@ A space for our Dungeons and Dragons App Back End Development project!
 Our plan for this project is to create a robust tool that allows players to create, track, and maintain characters & campaigns in an online database. We want to put online many of the offline elements of D&D. Things like character creation, stat tracking, equipment tracking, campaign notes, campaign progress, and DM campaign variables are typically maintained with pen and paper. This tool, if fully realized, could help create an online database to track, analyze, and crowd-source aggregate player data. This data can be used to make the game as paperless as possible. It could also help users see what kind of classes, spells, and tactics are commonly used or most effective for any given campaign. In essence, this tool could help form a metagame for a game-space that typically does not engage in metagames. 
 
 ## Install
-- pending
+- `npm i dnd-scribe`
+
+[NPM Package](https://www.npmjs.com/package/dnd-scribe)
 
 ## Usage
 
@@ -26,6 +28,39 @@ Our plan for this project is to create a robust tool that allows players to crea
 ![domain model](/assets/domain-model.jpg)
 
 ## [Team Agreement](https://docs.google.com/document/d/1gnVSigPs8UpnDbaIP43bSzKhmiVMd8NkYeraH0C29v4/edit?usp=sharing)
+
+## Team Agreement
+<details>
+  <summary>View More</summary>
+
+### Team: Kory Jackson, Clayton Jones, Daniel Nguyen, Madison Stehle, Joel Watson
+
+**Communication plan:** 
+How will your group communicate with each other? What is your strategy for ensuring everyone’s voices are heard, and that contributions from both loud and soft voices are listened to? Do you have a plan for managing psychological safety?
+
+Slack will be our primary channel for communication. We will be sure to have each member contribute to all discussions, assuming they feel they have something to say. Nothing is required.
+In the event of psychological safety issues, concerned members should reach out to a 3rd party within the group to mediate. If that is not amenable or if that fails to mitigate the issue, the concerned members will reach out to Sonia or CF admins to escalate the issue.
+
+**Conflict plan:** What will your group do when it encounters conflict? What will your process be to resolve it?
+Should a conflict arise, we will discuss it as a group. We can either vote or refer to the lead for that scope to break ties. If the conflict is personal, we will revert to the guidelines outlined in our Communication Plan. 
+
+**Work plan:** How you will identify tasks, assign tasks, know when they are complete, and manage work in general? In particular, make sure you know how you’ll track whether everyone is contributing equally to all parts of the application, and that each person is working on “meaty” problems. What project management tool will be used?
+
+We will use Github Projects for task management. We will aim to balance the number of commits equally across the team. We may or may not assign a Project Manager role to the team (Daniel volunteers).
+
+**Git process:** What is your Git flow? How many people must review a PR? Who merges PRs? How often will you merge? How will you communicate that it’s time to merge?
+
+`Master > Dev > Feature`
+
+Feature merges into Dev branch will require one other team member to approve. Merges from dev into master will require every member of the team to approve, pending a code review.
+
+Merge communication will happen via Slack, or over comms via Remo.
+
+**Anything else you feel is important:** Expectations around work times, stand-up times(outside of the ones schedule with the instructional team), taking breaks/seeking help when you’re stuck, etc.
+
+Regarding working windows, we will stick to class hours (6:30 to 9:30pm, M-Th) as a bare minimum. If folks want to start earlier or work later, that is totally okay too! 
+
+</details>
 
 ## Origin Story
 
