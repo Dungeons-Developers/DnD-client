@@ -37,14 +37,15 @@ async function login(mute = "1") {
       let user = response.body;
 
       if (!user.username) {
-        console.log(chalk.hex("#f0190a")("\nInvalid credentials."));
+        console.log(chalk.hex("#f0190a")("\n\nInvalid credentials."));
         login(mute + "1");
       } else {
         console.log(`\n\nWelcome, ${username}!`);
         menu(user);
       }
     } catch (e) {
-      console.log("ERROR", e);
+      console.log(chalk.hex("#f0190a")("\n\nInvalid credentials."));
+      login(mute + "1");    
     }
   });
   rl._writeToOutput = function _writeToOutput(stringToWrite) {

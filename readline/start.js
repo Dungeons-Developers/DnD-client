@@ -8,7 +8,7 @@ const gradient = require("gradient-string");
 
 const commands = require("./commands");
 
-console.log(gradient.cristal("\nWelcome to D&D Companion!\n"));
+console.log(gradient.cristal("\nWelcome to D&D Scribe!\n"));
 
 /**
  * This function starts our application in the terminal
