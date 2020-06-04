@@ -18,44 +18,48 @@ Our plan for this project is to create a robust tool that allows players to crea
 [NPM Package](https://www.npmjs.com/package/dnd-scribe)
 
 ## Usage
+<details>
+  <summary>View More</summary>
 
 ### Start
 
 After you install the application, you can start it with `dnd-scribe`. You will then see this view:
 
-<img src="https://github.com/Dungeons-Developers/DnD-client/blob/development/assets/usage1.png" width="500">
+<img src="https://github.com/Dungeons-Developers/DnD-client/blob/development/assets/usage1.png" width="100%">
 
 ### Login / Signup
 
 You can then input `1` to login or `2` to signup. Let's show the signup path.
 
-<img src="https://github.com/Dungeons-Developers/DnD-client/blob/development/assets/usage2.png" width="500">
+<img src="https://github.com/Dungeons-Developers/DnD-client/blob/development/assets/usage2.png" width="100%">
 
 ### Main Menu
 
 Once signed in, you can view or create a character. 
 
-<img src="https://github.com/Dungeons-Developers/DnD-client/blob/development/assets/usage3.png" width="500">
+<img src="https://github.com/Dungeons-Developers/DnD-client/blob/development/assets/usage3.png" width="100%">
 
 ### Character Create
 
 To create a character, you will begin by choosing a name. Then just follow the given directions until you finish creating your new adventurer!
 
-<img src="https://github.com/Dungeons-Developers/DnD-client/blob/development/assets/usage4.png" width="500">
+<img src="https://github.com/Dungeons-Developers/DnD-client/blob/development/assets/usage4.png" width="100%">
 
-<img src="https://github.com/Dungeons-Developers/DnD-client/blob/development/assets/usage5.png" width="500">
+<img src="https://github.com/Dungeons-Developers/DnD-client/blob/development/assets/usage5.png" width="100%">
 
 ### View Characters
 
 After you create your character, or after you login, you will see the main menu. Select `1` to view a list of all created characters. 
 
-<img src="https://github.com/Dungeons-Developers/DnD-client/blob/development/assets/usage6.png" width="500">
+<img src="https://github.com/Dungeons-Developers/DnD-client/blob/development/assets/usage6.png" width="100%">
 
 ### Character Select
 
 Once you have selected a previously created character, you will be able to see all the attributes tied to that character. From here you can delete your character or return to the main menu.
 
-<img src="https://github.com/Dungeons-Developers/DnD-client/blob/development/assets/usage7.png" width="500">
+<img src="https://github.com/Dungeons-Developers/DnD-client/blob/development/assets/usage7.png" width="100%">
+
+</details>
 
 ## [Project Board with User Stories](https://github.com/Dungeons-Developers/DnD/projects/1?add_cards_query=is%3Aopen)
 
@@ -66,8 +70,6 @@ Once you have selected a previously created character, you will be able to see a
 ## Team Agreement
 <details>
   <summary>View More</summary>
-
-### Team: Kory Jackson, Clayton Jones, Daniel Nguyen, Madison Stehle, Joel Watson
 
 **Communication plan:** 
 How will your group communicate with each other? What is your strategy for ensuring everyone’s voices are heard, and that contributions from both loud and soft voices are listened to? Do you have a plan for managing psychological safety?
