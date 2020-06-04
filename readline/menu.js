@@ -5,7 +5,7 @@ const rl = require('./readline');
 const chalk = require('chalk');
 
 const createCharacter = require('./commands/charCreate');
-const getCharacter = require('./commands/charGet');
+const getCharacter = require('./commands/charGet').charGet;
 const deleteCharacter = require('./commands/charDelete');
 
 let characterOptions =

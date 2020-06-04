@@ -34,32 +34,8 @@ async function charGet(user) {
       let charList = response.body;
     
       if(charList.length){
-        // charList.forEach( (characters, index) => {
-        
-        //   console.log(
-        //     chalk.green(
-        //       `${index+1}. ${characters.name} - ${characters.race} ${characters.class} \n`,
-        //     ),
-        //   );
-        // });
 
         printAllChar(charList);
-
-        // let charSelect = await rl.ask(chalk.hex('#4298eb')('Select a character to see more details or type "M" to go back to the main menu. \n - '));
-
-        
-        // if (charSelect.toUpperCase() === 'M') {
-        //   console.log('\nReturning to main menu...');
-        //   resolve();
-        //   return;
-        // }
-
-        // while (invalid(charSelect, list)) {
-        //   console.log('\nThat character does not exist! Returning to main menu...');
-        //   charSelect = await rl.ask(chalk.red('Invalid selection. Please try again.'));
-        // }
-
-        // let selection = charList[charSelect-1];
 
         let selection = await getCharSelection(charList);
 
@@ -84,6 +60,12 @@ async function charGet(user) {
   });
 };
 
+/**
+ * Prints a list of the characters belonging to the user
+ * 
+ * @param {Array} list - this is an array of user's characters
+ */
+
 function printAllChar(list) {
   list.forEach( (characters, index) => {
         
@@ -95,19 +77,22 @@ function printAllChar(list) {
   });
 }
 
+/**
+ * Prompts the user for a selection of previously displayed options
+ * 
+ * @param {Array} list - this is an array of the options presented to the user
+ */
 async function getCharSelection(list) {
   return new Promise( async ( resolve, reject ) => {
     let charSelect = await rl.ask(chalk.hex('#4298eb')('Select a character to see more details or type "M" to go back to the main menu.\n') + '- ');
 
-        
-    if (charSelect.toUpperCase() === 'M') {
-      resolve('M');
-      return;
-    }
-
     while (invalid(charSelect, list)) {
-      console.log('\nThat character does not exist! Returning to main menu...');
-      charSelect = await rl.ask(chalk.red('Invalid selection. Please try again.'));
+      if (charSelect.toUpperCase() === 'M') {
+        console.log('\nReturning to main menu...\n');
+        resolve('M');
+        return;
+      }
+      charSelect = await rl.ask(chalk.red('\nInvalid selection. Please try again.\n') + '- ');
     }
 
     resolve(list[charSelect - 1]);
@@ -142,4 +127,4 @@ function printChar(selection) {
   console.log(gradient.cristal('Ability Scores - \n\tSTR: '), selection.ability_scores.str, gradient.cristal(' | DEX: '), selection.ability_scores.dex, gradient.cristal(' | CON: '), selection.ability_scores.con, gradient.cristal(' | INT: '), selection.ability_scores.int, gradient.cristal(' | WIS: '), selection.ability_scores.wis, gradient.cristal(' | CHA: '), selection.ability_scores.cha, '\n');
 }
 
-module.exports = charGet;
+module.exports = { charGet, getCharSelection, printAllChar, printChar };
