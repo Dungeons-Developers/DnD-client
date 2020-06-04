@@ -27,7 +27,6 @@ async function menu(user) {
         character ? selectMenu(user, character) : menu(user);
         break;
       case "2":
-        console.log("Entered character creator. \n");
         await createCharacter(user);
         menu(user);
         break;

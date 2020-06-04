@@ -23,7 +23,7 @@ async function createCharacter(user) {
   return new Promise(async (resolve, reject) => {
     console.log(
       chalk.green(
-        "Please provide the following information about your character:\n"
+        '\nPlease provide the following information about your character:\n'
       )
     );
 
@@ -62,7 +62,7 @@ async function createCharacter(user) {
 
     console.log(
       chalk.green(
-        `\nYou have created a ${response.body.race} ${response.body.class} named ${response.body.name}!`
+        `\nYou have created a ${response.body.race} ${response.body.class} named ${response.body.name}!\n`
       )
     );
     printChar(response.body);

@@ -113,6 +113,7 @@ function printChar(selection) {
   let regexGood = /\b(\w*Good\w*)\b/gim;
   let regexEvil = /\b(\w*Evil\w*)\b/gim;
 
+
   console.log(gradient.cristal("Name -"), selection.name);
   console.log(gradient.cristal("Race -"), selection.race);
   console.log(gradient.cristal("Class -"), selection.class);
@@ -140,7 +141,7 @@ function printChar(selection) {
     `\n\t${selection.proficient_skills.skill_1} \n\t${selection.proficient_skills.skill_2}`
   );
   console.log(
-    gradient.cristal("Equipment - ", "\n\tArmor: "),
+    gradient.cristal("Equipment - \n\tArmor: "),
     selection.equipment.armor,
     gradient.cristal("\n\tAdventure Pack: "),
     selection.equipment.adventure_packs,
