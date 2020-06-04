@@ -1,10 +1,10 @@
 {
-  "name": "dnd-client",
+  "name": "dnd-scribe",
   "version": "1.0.0",
-  "description": "Client facing application for DnD character creator tool",
+  "description": "DnD character creator tool",
   "main": "index.js",
   "bin": {
-    "dnd-client": "./index.js"
+    "dnd-scribe": "./index.js"
   },
   "scripts": {
     "test": "jest --verbose --coverage --runInBand",
