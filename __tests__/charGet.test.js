@@ -128,11 +128,8 @@ describe('full charGet function', () => {
     }, 2000);
 
     let response = await charGetFunc.charGet({username: 'u'});
-    console.log('RESPONSE!!!', response);
 
     expect(response).toBeDefined();
-    // expect(response.name).toBeDefined();
-    // expect(response.class).toBeDefined();
     rl.close();
   });
 });
