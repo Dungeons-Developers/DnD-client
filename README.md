@@ -25,39 +25,39 @@ Our plan for this project is to create a robust tool that allows players to crea
 
 After you install the application, you can start it with `dnd-scribe`. You will then see this view:
 
-<img src="https://github.com/Dungeons-Developers/DnD-client/blob/development/assets/usage1.png" width="100%">
+<img src="https://github.com/Dungeons-Developers/DnD-client/blob/development/assets/usage1.png">
 
 ### Login / Signup
 
 You can then input `1` to login or `2` to signup. Let's show the signup path.
 
-<img src="https://github.com/Dungeons-Developers/DnD-client/blob/development/assets/usage2.png" width="100%">
+<img src="https://github.com/Dungeons-Developers/DnD-client/blob/development/assets/usage2.png">
 
 ### Main Menu
 
 Once signed in, you can view or create a character. 
 
-<img src="https://github.com/Dungeons-Developers/DnD-client/blob/development/assets/usage3.png" width="100%">
+<img src="https://github.com/Dungeons-Developers/DnD-client/blob/development/assets/usage3.png">
 
 ### Character Create
 
 To create a character, you will begin by choosing a name. Then just follow the given directions until you finish creating your new adventurer!
 
-<img src="https://github.com/Dungeons-Developers/DnD-client/blob/development/assets/usage4.png" width="100%">
+<img src="https://github.com/Dungeons-Developers/DnD-client/blob/development/assets/usage4.png">
 
-<img src="https://github.com/Dungeons-Developers/DnD-client/blob/development/assets/usage5.png" width="100%">
+<img src="https://github.com/Dungeons-Developers/DnD-client/blob/development/assets/usage5.png">
 
 ### View Characters
 
 After you create your character, or after you login, you will see the main menu. Select `1` to view a list of all created characters. 
 
-<img src="https://github.com/Dungeons-Developers/DnD-client/blob/development/assets/usage6.png" width="100%">
+<img src="https://github.com/Dungeons-Developers/DnD-client/blob/development/assets/usage6.png">
 
 ### Character Select
 
 Once you have selected a previously created character, you will be able to see all the attributes tied to that character. From here you can delete your character or return to the main menu.
 
-<img src="https://github.com/Dungeons-Developers/DnD-client/blob/development/assets/usage7.png" width="100%">
+<img src="https://github.com/Dungeons-Developers/DnD-client/blob/development/assets/usage7.png">
 
 </details>
 
