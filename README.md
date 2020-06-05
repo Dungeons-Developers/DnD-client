@@ -107,6 +107,12 @@ Regarding working windows, we will stick to class hours (6:30 to 9:30pm, M-Th) a
 - We did not add strong user account authorization (yet) as it was complicating our work to get in the weeds on that feature. We wanted to get the application fully built and running first. That may come with a later update.
 - We limited character creation to Level 1 characters to decrease project scope and complexity. Later updates may include the ability to update a character beyond the initial build. 
 
+## Documentation
+
+### [Swagger](https://cf-dnd-character-creator.herokuapp.com/api-docs)
+
+### [JSDocs]()
+
 ## [Change Log](/questingLog/log.md)
 
 ## Credits
