@@ -111,7 +111,7 @@ Regarding working windows, we will stick to class hours (6:30 to 9:30pm, M-Th) a
 
 ### [Swagger](https://cf-dnd-character-creator.herokuapp.com/api-docs)
 
-### [JSDocs]()
+### [JSDocs](https://dungeons-developers.github.io/Dnd-jsdoc/docs/global)
 
 ## [Change Log](/questingLog/log.md)
 
